@@ -4,6 +4,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import "../global.css";
+import "../lib/svg-interop";
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
