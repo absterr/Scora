@@ -101,6 +101,13 @@ module.exports = {
           "filled-04": "#D7D9F2",
           "filled-06": "#FDE1DF",
         },
+
+        fontFamily: {
+          "inter-regular": "Inter-Regular",
+          "inter-medium": "Inter-Medium",
+          "display-regular": "InterDisplay-Regular",
+          "display-medium": "InterDisplay-Medium",
+        },
       },
     },
   },
