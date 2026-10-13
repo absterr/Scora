@@ -1,41 +1,87 @@
-This is an Expo/React Native mobile application. Prioritize mobile-first patterns, performance, and cross-platform compatibility.
+# AGENTS.md
 
-## Expo has changed — do not trust your training data
+## Project Overview
 
-Expo ships breaking changes every SDK release. APIs you remember are likely renamed, moved, or removed. Before writing any code that touches an Expo, EAS, or React Native API:
+- **Scora** — An AI meeting video application built with React Native and Expo.
+- Stack: Expo (~57.0.28), React Native (0.86.3), React 19, TypeScript, Expo Router, NativeWind v4 (Tailwind CSS v3).
+- Code style/linting: ESLint & Prettier (via `expo lint` and `prettier-plugin-tailwindcss`).
 
-1. Read the major version of the `expo` package in `package.json`.
-2. Fetch the matching versioned docs: `https://docs.expo.dev/versions/v<major>.0.0/`
-3. For anything else, fetch https://docs.expo.dev/llms.txt — an index of all Expo docs with corrections to common LLM misconceptions. Follow its links to the specific page you need; never answer from memory.
+## Environment Setup & Run
 
-## Commands
+- Install all dependencies: `npm install`
+- Install a single package: `npm install <package>`
+- Start the Metro bundler: `npm run start`
+- Run on iOS (requires macOS/Xcode): `npm run ios`
+- Run on Android (requires Android Studio/emulator): `npm run android`
+- Run on Web: `npm run web`
+- Check linting: `npm run lint`
+- Reset project/cache: `npm run reset-project`
 
-Use `bunx` instead of `npx` if the project uses bun (`bun.lock` present).
+## Project Structure
 
-```bash
-npx expo install <package>  # ALWAYS use instead of npm/yarn/pnpm/bun add — resolves SDK-compatible versions
-npx expo start              # start the dev server
-npx expo lint               # lint
-npx tsc --noEmit            # typecheck
-npx expo-doctor             # diagnose dependency and config issues
-npx expo install --fix      # fix incompatible package versions
-```
+- `src/app/` — Expo Router routes (file-based routing). Screens, `_layout.tsx`, and `+not-found.tsx` files belong here.
+- `src/components/` — React components.
+  - `src/components/ui/` — Shared, basic UI components (e.g., buttons, inputs).
+  - `src/components/icons/` — SVG icons categorized into `/line`, `/solid`, `/crypto`, and `/social`.
+  - Co-locate screen-specific components in their own folders within `src/components/` or directly next to the screen in `src/app/` if they are strictly single-use.
+- `src/lib/` — Helpers, utility functions, hooks, and API clients.
+- `assets/` — Static assets used in the app.
+  - `assets/fonts/` — Custom typography.
+  - `assets/images/` — Application images.
+- `global.css` — Global Tailwind imports and base styles.
 
-Run lint and typecheck before declaring any task done.
+## Coding Conventions
 
-## Navigation & Routing
+- Prefer functional programming; avoid mutating globals.
+- File names must use **kebab-case**, except for component files which use **PascalCase**. Expo Router files in `src/app/` must follow Expo Router naming conventions (e.g., `[id].tsx`, `_layout.tsx`).
+- Use default exports for screen components in `src/app/` and `src/components/`. Named exports are preferred for utilities, helpers, hooks and constants.
+- The only exception to default exports is forwardRef components in `src/components/` which use named exports as they may also export needed types.
 
-- Use **Expo Router** for all navigation. Routes live in `src/app/` — every file there is a screen, `_layout.tsx` files define navigators. Keep non-route code (components, hooks, utils) outside `src/app/`.
-- Import `Link`, `router`, and `useLocalSearchParams` from `expo-router`.
-- Docs: https://docs.expo.dev/router/introduction.md
+## Component Structure & UI
 
-## Building with EAS
+- Write semantic, accessible markup using React Native primitives (`View`, `Text`, `Pressable`, etc.).
+- Ensure tap targets (`Pressable`, `TouchableOpacity`) are large enough (minimum 44x44 points) for mobile accessibility.
+- Handle safe areas properly using `react-native-safe-area-context`.
 
-Use EAS to build, sign, and submit the app in the cloud (`eas build`, `eas submit`) and to ship over-the-air updates (`eas update`) — no local Xcode or Android Studio required. Run EAS CLI as `bunx eas-cli <command>` in Bun projects, or `npx eas-cli@latest <command>` otherwise; substitute that for bare `eas` in docs examples.
-Docs: https://docs.expo.dev/eas/index.md
+## Tailwind CSS (v3 via NativeWind)
 
-## Rules
+- **Syntax:** Use Tailwind v3 syntax. NativeWind v4 compiles Tailwind v3 classes to React Native styles.
+- **Style Placement:** Keep styles inline using the `className` prop. `global.css` should only contain the Tailwind directives and genuinely global configurations.
+- **Values & Scale:** Use Tailwind scale values where possible. Arbitrary values (`w-[100px]`) are permitted in v3 but should be avoided if a standard theme value exists.
+- **Margins:** Avoid margins unless truly necessary (e.g. spacing an icon from adjacent text).
+- **Layouts:** Use Flexbox and `gap-*` or padding for layout control. React Native uses Flexbox by default with `flex-direction: column`.
+- **Class Ordering:** Base styles first, followed by state/platform variants (e.g., `active:`, `ios:`, `android:`).
+- **Merging:** Use `cn` from `src/lib/utils.ts` (uses `clsx` and `tailwind-merge`) if available to combine classes conditionally or when building reusable UI components.
 
-- If `ios/` and `android/` directories do not exist, they are generated (Continuous Native Generation). Never create or edit them by hand — configure native behavior in `app.json` and config plugins.
-- Expo Go only includes its bundled native modules. After adding a library with native code, the app needs a development build: `npx expo run:ios|android` locally, or `eas build --profile development`.
-- Prefer recommended Expo modules over third-party libraries, and check your available skills before adding dependencies. Docs: https://docs.expo.dev/versions/latest/index.md
+## Response Style & Format
+
+- Respond in clear, succinct, structured text. Use headers/bullets for prose explanations, not as a substitute for writing less code.
+- Keep answers concise by default. Expand only when explicitly asked for detail.
+- Do NOT use em dashes (—). Use commas, periods, or parentheses instead.
+- Do not narrate your reasoning process, internal deliberation, or step-by-step thinking as visible text. Only output the final response.
+
+## Safety & Access
+
+- Never call external APIs or network endpoints unless I explicitly say to.
+- Do not touch files outside the repo.
+- Prohibited: `rm -rf /` and any destructive command run against paths outside the working tree.
+- Never execute shell commands that include unsanitized user input.
+- Never `sudo`; if root privilege is needed, ask a human.
+
+## Documentation & Dependency Versions
+
+- Always reference standard React Native and Expo documentation.
+- Verify package versions against `package.json` before utilizing specific APIs (e.g., `expo-router` v3/v4 behaviors).
+
+## Commit messages
+
+- Follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) format: `<type>[optional scope]: <description>`
+- **Title line (type + scope + description) must stay under 50 characters.**
+- **Default to the title line only.** Add a body only when the title can't carry the necessary context on its own.
+- Use `feat` for new features and `fix` for bug fixes; other types like `build`, `chore`, `ci`, `docs`, `style`, `refactor`, `perf`, and `test` are also allowed.
+- Keep the description short, lowercase, and in the imperative mood (e.g. `fix: correct array parsing with multiple spaces`).
+- Add an optional scope in parentheses after the type to indicate the affected area, e.g. `feat(parser): add ability to parse arrays`.
+- When a body is needed, keep it as short as possible, just enough to deliver the message. Wrap it at 72 characters per line (a limit, not a target).
+- For breaking changes, add `!` immediately before the colon (e.g. `feat!:`) and/or include a `BREAKING CHANGE:` footer with a description.
+- Footers (e.g. `Refs:`, `Reviewed-by:`) go one blank line after the body (or after the description, if no body is used).
+- Do NOT mix multiple unrelated changes (e.g. a feature and a fix) into a single commit, split them instead unless they are tightly related or coupled.
