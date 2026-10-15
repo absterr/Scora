@@ -19,7 +19,7 @@ export default function OTPInput({
 }: OTPInputProps) {
   const { colorScheme } = useColorScheme();
   const inputsRef = useRef<Array<TextInput | null>>([]);
-  const [focusedIndex, setFocusedIndex] = useState<number | null>(null);
+  const [_, setFocusedIndex] = useState<number | null>(null);
 
   const digits = Array.from({ length }, (_, i) => value[i] ?? "");
 
