@@ -29,6 +29,11 @@ const variants = {
     container: "",
     color: "text-ink-500 dark:text-snow-600",
   },
+  accent: {
+    container:
+      "bg-brand-400 border border-brand-300 dark:bg-snow-500 dark:border-grey-500",
+    color: "text-white dark:text-ink-500",
+  },
 };
 
 export default function Button({
