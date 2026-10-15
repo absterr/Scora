@@ -1,8 +1,6 @@
 import { Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import Button from "@/components/ui/Button";
-
 export default function Index() {
   return (
     <SafeAreaView className="flex-1 flex-col justify-center">
@@ -10,7 +8,6 @@ export default function Index() {
         <Text className="text-center">
           Edit src/app/index.tsx to edit this screen.
         </Text>
-        <Button label="Say hi" />
       </View>
     </SafeAreaView>
   );
