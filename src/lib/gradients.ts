@@ -15,8 +15,6 @@ export const gradients = {
   linear05: { colors: ["#08A563", "#C5FFE7"], ...vertical },
   linear06: { colors: ["#345FFD", "#C2CFFF"], ...vertical },
   linear07: { colors: ["#D89C02", "#FFF2D2"], ...vertical },
-  cardFilled05: {
-    colors: ["rgba(8,82,255,0.12)", "rgba(2,7,72,0.15)"],
-    ...vertical,
-  },
+
+  cardFilled05: { colors: ["#DFE9FF", "#D7D9E4"], ...vertical },
 } as const;
