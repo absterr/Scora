@@ -1,12 +1,15 @@
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
+import { useColorScheme } from "nativewind";
 import { useEffect } from "react";
+import { Image, View } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import "../global.css";
 import "../lib/svg-interop";
 
 export default function RootLayout() {
+  const { colorScheme } = useColorScheme();
   const [fontsLoaded] = useFonts({
     "Inter-Medium": require("@/assets/fonts/Inter-Medium.ttf"),
     "Inter-Regular": require("@/assets/fonts/Inter-Regular.ttf"),
@@ -20,13 +23,34 @@ export default function RootLayout() {
 
   if (!fontsLoaded) return null;
 
+  const background =
+    colorScheme === "dark"
+      ? require("@/assets/images/dark-gradient-bg.png")
+      : require("@/assets/images/light-gradient-bg.png");
+
   return (
     <SafeAreaProvider>
-      <Stack
-        screenOptions={{
-          headerShown: false,
-        }}
-      />
+      <View className="flex-1 bg-snow-500 dark:bg-ink-800">
+        <Image
+          source={background}
+          resizeMode="cover"
+          style={{
+            width: "100%",
+            aspectRatio: 375 / 443,
+            position: "absolute",
+            top: 0,
+          }}
+        />
+
+        <Stack
+          screenOptions={{
+            headerShown: false,
+            contentStyle: {
+              backgroundColor: "transparent",
+            },
+          }}
+        />
+      </View>
     </SafeAreaProvider>
   );
 }
