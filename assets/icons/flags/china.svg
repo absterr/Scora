@@ -1,0 +1,22 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<title>China</title>
+<g clip-path="url(#clip0_814_10532)">
+<g clip-path="url(#clip1_814_10532)">
+<path d="M0 0H24V24H0V0Z" fill="#EE1C25"/>
+<path d="M9.60039 4.92002L3.48039 8.88002L6.00039 2.40002L8.16039 8.88002L2.40039 4.92002H9.60039Z" fill="#FFFF00"/>
+<path d="M11.0897 1.5492L13.2704 2.61725L10.9878 3.00945L12.4675 1.28097L12.325 3.60501L11.0897 1.5492Z" fill="#FFFF00"/>
+<path d="M13.8685 3.66599L15.4627 5.49965L13.2059 4.97237L15.2429 3.95521L14.2066 6.04204L13.8685 3.66599Z" fill="#FFFF00"/>
+<path d="M14.3702 7.14996L15.0771 9.47602L13.2313 8.07243L15.5073 7.97565L13.7083 9.45822L14.3702 7.14996Z" fill="#FFFF00"/>
+<path d="M12.4697 9.63896L12.2243 12.0552L11.0645 10.05L13.1993 10.8384L10.9697 11.511L12.4697 9.63896Z" fill="#FFFF00"/>
+</g>
+</g>
+<rect x="0.48" y="0.48" width="23.04" height="23.04" rx="11.52" stroke="#E4E4E4" stroke-width="0.96"/>
+<defs>
+<clipPath id="clip0_814_10532">
+<rect width="24" height="24" rx="12" fill="white"/>
+</clipPath>
+<clipPath id="clip1_814_10532">
+<rect width="24" height="24" fill="white"/>
+</clipPath>
+</defs>
+</svg>
