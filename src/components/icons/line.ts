@@ -13,6 +13,7 @@ export { default as Folder } from "@/assets/icons/line/folder.svg";
 export { default as User } from "@/assets/icons/line/user.svg";
 
 export { default as Search } from "@/assets/icons/line/search.svg";
+export { default as SwitchHorizontal } from "@/assets/icons/line/switch-horizontal.svg";
 
 export { default as VideoRecorder } from "@/assets/icons/line/video-recorder.svg";
 
