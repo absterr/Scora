@@ -2,7 +2,8 @@ import { Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import Logo from "@/components/Logo";
-import LiveTranscriptCard from "@/components/screens/intro/LiveTranscriptCard";
+import DocExportCard from "@/components/screens/intro/DocExportCard";
+import FormatList from "@/components/screens/intro/FormatList";
 import Button from "@/components/ui/Button";
 
 export default function Intro() {
@@ -15,8 +16,9 @@ export default function Intro() {
     >
       <Logo />
 
-      <View className="flex-1 items-center justify-center">
-        <LiveTranscriptCard />
+      <View className="flex-1 items-center justify-center gap-y-4">
+        <DocExportCard />
+        <FormatList />
       </View>
 
       <View className="w-full gap-8">
