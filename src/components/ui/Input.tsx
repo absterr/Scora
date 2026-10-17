@@ -14,6 +14,7 @@ import { Eye, EyeOff } from "../icons/line";
 type InputProps = TextInputProps & {
   label: string;
   error?: string;
+  invalid?: string;
   isPassword?: boolean;
   className?: string;
 };
@@ -21,6 +22,7 @@ type InputProps = TextInputProps & {
 export default function Input({
   label,
   error,
+  invalid,
   isPassword = false,
   secureTextEntry,
   onFocus,
@@ -32,11 +34,12 @@ export default function Input({
   const [focused, setFocused] = useState(false);
   const [visible, setVisible] = useState(false);
 
-  const borderClass = error
-    ? "border-error-500"
-    : focused
-      ? "border-brand-400"
-      : "border-white/[0.08] dark:border-snow-300/[0.11]";
+  const borderClass =
+    error || invalid
+      ? "border-error-500"
+      : focused
+        ? "border-brand-400"
+        : "border-white/[0.08] dark:border-snow-300/[0.11]";
 
   return (
     <View className={cn("w-full gap-2", className)}>
