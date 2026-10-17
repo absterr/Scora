@@ -9,7 +9,6 @@ type NotificationRowProps = {
 };
 
 const TILE_SHADOW = { boxShadow: "0px 2px 6px rgba(11,10,10,0.25)" };
-// 11 petals, 32.73deg apart, symmetric about the vertical axis (from the logo CSS)
 const PETALS = Array.from({ length: 11 }, (_, i) => 16.36 + (360 / 11) * i);
 const TEXT =
   "font-display-regular text-xs leading-4 text-ink-400 dark:text-grey-100";

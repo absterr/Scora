@@ -53,7 +53,6 @@ type Step = { index: number; direction: 1 | -1 };
 const SHEET_HEIGHT = 662;
 const BUMP_HEIGHT = 25.46;
 const BODY_RADIUS = 24;
-// Notch ellipse is 84x89.12, centered 19.1px below the body top (chord half-width 37.95)
 const NOTCH = { rx: 42, ry: 44.56, half: 37.95 };
 const INITIAL: Step = { index: 0, direction: 1 };
 const ENTER_FORWARD = FadeInRight.duration(250);
@@ -110,6 +109,7 @@ export const StepSheet = forwardRef<StepSheetHandle, StepSheetProps>(
         ref={sheetRef}
         snapPoints={snapPoints}
         enableDynamicSizing={false}
+        enableOverDrag={false}
         handleComponent={null}
         backgroundComponent={SheetBackground}
         onChange={(i) => setOpen(i >= 0)}
