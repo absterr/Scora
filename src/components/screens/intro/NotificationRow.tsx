@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import { useColorScheme } from "nativewind";
 import { Text, View } from "react-native";
 import Svg, { Rect } from "react-native-svg";
@@ -6,6 +7,7 @@ type NotificationRowProps = {
   title: string;
   time: string;
   description: string;
+  className?: string;
 };
 
 const TILE_SHADOW = { boxShadow: "0px 2px 6px rgba(11,10,10,0.25)" };
@@ -17,13 +19,20 @@ export default function NotificationRow({
   title,
   time,
   description,
+  className,
 }: NotificationRowProps) {
   const { colorScheme } = useColorScheme();
   // ink-50 on brand-400 (light), ink-500 on brand-50 (dark)
   const mark = colorScheme === "dark" ? "#101010" : "#E7E7E7";
 
   return (
-    <View className="w-full flex-row items-center gap-2.5 rounded-xl border border-brand-100 bg-brand-50 p-2 dark:border-card-stroke dark:bg-snow-300/[0.04]">
+    <View
+      className={cn(
+        "w-full p-2 flex-row items-center gap-2.5 rounded-xl border border-brand-100",
+        "bg-brand-50  dark:border-card-stroke dark:bg-snow-300/[0.04]",
+        className
+      )}
+    >
       <View
         className="size-8 items-center justify-center rounded-lg bg-brand-400 dark:bg-brand-50"
         style={TILE_SHADOW}
