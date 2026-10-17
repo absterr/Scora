@@ -1,14 +1,14 @@
 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 <title>Scora</title>
 <ellipse cx="0.90307" cy="2.86706" rx="0.90307" ry="2.86706" transform="matrix(0.964843 0.262827 -0.261329 0.96525 9.32892 0)" fill="currentColor"/>
-<ellipse cx="0.904409" cy="2.86283" rx="0.904409" ry="2.86283" transform="matrix(0.657041 0.753855 -0.751918 0.659257 13.4998 1.95654)" fill=currentColor""/>
-<ellipse cx="0.905526" cy="2.85928" rx="0.905526" ry="2.85928" transform="matrix(0.130404 0.991461 -0.99136 0.131168 15.7639 6.04614)" fill="#currentColor"/>
-<ellipse cx="0.905186" cy="2.86064" rx="0.905186" ry="2.86064" transform="matrix(-0.412697 0.910868 -0.909942 -0.414735 15.5945 10.5232)" fill="#currentColor"/>
-<ellipse cx="0.90367" cy="2.86517" rx="0.90367" ry="2.86517" transform="matrix(-0.840957 0.541101 -0.538828 -0.842416 13.0453 14.3362)" fill="#currentColor"/>
-<ellipse cx="0.902886" cy="2.86764" rx="0.902886" ry="2.86764" transform="matrix(-1 0.000703259 -0.000699093 -1 8.89337 15.9988)" fill="#currentColor"/>
-<ellipse cx="0.903645" cy="2.86524" rx="0.903645" ry="2.86524" transform="matrix(-0.846313 -0.532686 0.53042 -0.847735 4.39941 15.1785)" fill="#currentColor"/>
-<ellipse cx="0.905197" cy="2.86061" rx="0.905197" ry="2.86061" transform="matrix(-0.407848 -0.91305 0.912143 -0.409871 1.03262 12.0911)" fill="#currentColor"/>
-<ellipse cx="0.905507" cy="2.85934" rx="0.905507" ry="2.85934" transform="matrix(0.155497 -0.987836 0.987694 0.156401 0 7.6145)" fill="#currentColor"/>
-<ellipse cx="0.904374" cy="2.86294" rx="0.904374" ry="2.86294" transform="matrix(0.667052 -0.745011 0.743038 0.669249 1.36505 3.30981)" fill="#currentColor"/>
-<ellipse cx="0.903073" cy="2.86705" rx="0.903073" ry="2.86705" transform="matrix(0.964392 -0.264478 0.26302 0.96479 4.97675 0.478027)" fill="##currentColor"/>
+<ellipse cx="0.904409" cy="2.86283" rx="0.904409" ry="2.86283" transform="matrix(0.657041 0.753855 -0.751918 0.659257 13.4998 1.95654)" fill="currentColor"/>
+<ellipse cx="0.905526" cy="2.85928" rx="0.905526" ry="2.85928" transform="matrix(0.130404 0.991461 -0.99136 0.131168 15.7639 6.04614)" fill="currentColor"/>
+<ellipse cx="0.905186" cy="2.86064" rx="0.905186" ry="2.86064" transform="matrix(-0.412697 0.910868 -0.909942 -0.414735 15.5945 10.5232)" fill="currentColor"/>
+<ellipse cx="0.90367" cy="2.86517" rx="0.90367" ry="2.86517" transform="matrix(-0.840957 0.541101 -0.538828 -0.842416 13.0453 14.3362)" fill="currentColor"/>
+<ellipse cx="0.902886" cy="2.86764" rx="0.902886" ry="2.86764" transform="matrix(-1 0.000703259 -0.000699093 -1 8.89337 15.9988)" fill="currentColor"/>
+<ellipse cx="0.903645" cy="2.86524" rx="0.903645" ry="2.86524" transform="matrix(-0.846313 -0.532686 0.53042 -0.847735 4.39941 15.1785)" fill="currentColor"/>
+<ellipse cx="0.905197" cy="2.86061" rx="0.905197" ry="2.86061" transform="matrix(-0.407848 -0.91305 0.912143 -0.409871 1.03262 12.0911)" fill="currentColor"/>
+<ellipse cx="0.905507" cy="2.85934" rx="0.905507" ry="2.85934" transform="matrix(0.155497 -0.987836 0.987694 0.156401 0 7.6145)" fill="currentColor"/>
+<ellipse cx="0.904374" cy="2.86294" rx="0.904374" ry="2.86294" transform="matrix(0.667052 -0.745011 0.743038 0.669249 1.36505 3.30981)" fill="currentColor"/>
+<ellipse cx="0.903073" cy="2.86705" rx="0.903073" ry="2.86705" transform="matrix(0.964392 -0.264478 0.26302 0.96479 4.97675 0.478027)" fill="currentColor"/>
 </svg>
