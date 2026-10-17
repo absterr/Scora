@@ -1,10 +1,13 @@
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useColorScheme } from "nativewind";
 import { useEffect } from "react";
 import { Image, View } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+
 import "../global.css";
 import "../lib/svg-interop";
 
@@ -29,28 +32,32 @@ export default function RootLayout() {
       : require("@/assets/images/light-gradient-bg.png");
 
   return (
-    <SafeAreaProvider>
-      <View className="flex-1 bg-snow-500 dark:bg-ink-800">
-        <Image
-          source={background}
-          resizeMode="cover"
-          style={{
-            width: "100%",
-            aspectRatio: 375 / 443,
-            position: "absolute",
-            top: 0,
-          }}
-        />
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <SafeAreaProvider>
+        <BottomSheetModalProvider>
+          <View className="flex-1 bg-snow-500 dark:bg-ink-800">
+            <Image
+              source={background}
+              resizeMode="cover"
+              style={{
+                width: "100%",
+                aspectRatio: 375 / 443,
+                position: "absolute",
+                top: 0,
+              }}
+            />
 
-        <Stack
-          screenOptions={{
-            headerShown: false,
-            contentStyle: {
-              backgroundColor: "transparent",
-            },
-          }}
-        />
-      </View>
-    </SafeAreaProvider>
+            <Stack
+              screenOptions={{
+                headerShown: false,
+                contentStyle: {
+                  backgroundColor: "transparent",
+                },
+              }}
+            />
+          </View>
+        </BottomSheetModalProvider>
+      </SafeAreaProvider>
+    </GestureHandlerRootView>
   );
 }
