@@ -22,7 +22,8 @@ import {
 import Animated, {
   FadeInLeft,
   FadeInRight,
-  FadeOut,
+  FadeOutLeft,
+  FadeOutRight,
 } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Svg, { Path } from "react-native-svg";
@@ -55,9 +56,11 @@ const BUMP_HEIGHT = 25.46;
 const BODY_RADIUS = 24;
 const NOTCH = { rx: 42, ry: 44.56, half: 37.95 };
 const INITIAL: Step = { index: 0, direction: 1 };
+
 const ENTER_FORWARD = FadeInRight.duration(250);
+const EXIT_FORWARD = FadeOutRight.duration(250);
 const ENTER_BACK = FadeInLeft.duration(250);
-const EXIT = FadeOut.duration(150);
+const EXIT_BACK = FadeOutLeft.duration(250);
 
 const move = (delta: 1 | -1, last: number) => (step: Step) => ({
   index: Math.min(Math.max(step.index + delta, 0), last),
@@ -86,6 +89,7 @@ export const StepSheet = forwardRef<StepSheetHandle, StepSheetProps>(
         if (!open) return false;
         if (index > 0) setStep(move(-1, last));
         else sheetRef.current?.dismiss();
+
         return true;
       });
       return () => sub.remove();
@@ -120,7 +124,7 @@ export const StepSheet = forwardRef<StepSheetHandle, StepSheetProps>(
             <Animated.View
               key={current.key}
               entering={direction === 1 ? ENTER_FORWARD : ENTER_BACK}
-              exiting={EXIT}
+              exiting={direction === 1 ? EXIT_FORWARD : EXIT_BACK}
               className="absolute inset-0"
             >
               {current.render(nav)}
@@ -172,7 +176,10 @@ const SheetBackground = ({ style }: BottomSheetBackgroundProps) => {
         </Svg>
       ) : null}
       <View className="absolute inset-x-0 top-[11px] items-center">
-        <View className="size-3 rounded-full border border-snow-600 bg-snow-500 dark:border-card-stroke dark:bg-grey-700" />
+        <View
+          className={`size-3 rounded-full border border-snow-600 bg-snow-500
+          dark:border-card-stroke dark:bg-grey-700`}
+        />
       </View>
     </Animated.View>
   );
