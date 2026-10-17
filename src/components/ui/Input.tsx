@@ -14,7 +14,7 @@ import { Eye, EyeOff } from "../icons/line";
 type InputProps = TextInputProps & {
   label: string;
   error?: string;
-  invalid?: string;
+  invalid?: boolean;
   isPassword?: boolean;
   className?: string;
 };
