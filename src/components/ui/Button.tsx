@@ -60,7 +60,7 @@ export default function Button({
       {Icon ? <Icon width={18} height={18} className={v.color} /> : null}
       {label ? (
         <Text
-          className={cn("font-display-medium text-base leading-none", v.color)}
+          className={cn("font-display-medium text-base leading-5", v.color)}
         >
           {label}
         </Text>

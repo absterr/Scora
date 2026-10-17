@@ -1,7 +1,8 @@
-import { cn } from "@/lib/utils";
 import { useColorScheme } from "nativewind";
 import { Text, View } from "react-native";
-import Svg, { Rect } from "react-native-svg";
+
+import { AppIcon } from "@/components/icons/app";
+import { cn } from "@/lib/utils";
 
 type NotificationRowProps = {
   title: string;
@@ -11,7 +12,6 @@ type NotificationRowProps = {
 };
 
 const TILE_SHADOW = { boxShadow: "0px 2px 6px rgba(11,10,10,0.25)" };
-const PETALS = Array.from({ length: 11 }, (_, i) => 16.36 + (360 / 11) * i);
 const TEXT =
   "font-display-regular text-xs leading-4 text-ink-400 dark:text-grey-100";
 
@@ -37,7 +37,7 @@ export default function NotificationRow({
         className="size-8 items-center justify-center rounded-lg bg-brand-400 dark:bg-brand-50"
         style={TILE_SHADOW}
       >
-        <ScoraMark color={mark} />
+        <AppIcon width={16} height={16} color={mark} />
       </View>
       <View className="flex-1 gap-0.5">
         <View className="flex-row items-center justify-between gap-2.5">
@@ -56,20 +56,3 @@ export default function NotificationRow({
     </View>
   );
 }
-
-const ScoraMark = ({ color }: { color: string }) => (
-  <Svg width={16} height={16} viewBox="0 0 16 16">
-    {PETALS.map((angle) => (
-      <Rect
-        key={angle}
-        x={7.095}
-        y={0}
-        width={1.81}
-        height={5.73}
-        rx={0.905}
-        fill={color}
-        transform={`rotate(${angle} 8 8)`}
-      />
-    ))}
-  </Svg>
-);
