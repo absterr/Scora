@@ -1,10 +1,13 @@
 import { useRouter } from "expo-router";
 import type { ReactNode } from "react";
 import { useState } from "react";
-import { Pressable, ScrollView, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Svg, { Circle, Path } from "react-native-svg";
 
+import AuthHeader from "@/components/screens/auth/AuthHeader";
+import AuthScreen from "@/components/screens/auth/AuthScreen";
+import AuthSwitch from "@/components/screens/auth/AuthSwitch";
 import Button from "@/components/ui/Button";
 import Checkbox from "@/components/ui/Checkbox";
 import Input from "@/components/ui/Input";
@@ -58,24 +61,11 @@ export default function Signup() {
     agreed;
 
   return (
-    <ScrollView
-      contentContainerClassName="grow gap-10 px-6 pt-16"
-      contentContainerStyle={{ paddingBottom: insets.bottom + 30 }}
-      keyboardShouldPersistTaps="handled"
-      showsVerticalScrollIndicator={false}
-    >
-      <View className="w-full items-center gap-3">
-        <Text className="text-center font-display-medium text-xl leading-none text-ink-500 dark:text-snow-600">
-          Get Started for Free
-        </Text>
-        <Text
-          className="text-center font-display-regular text-sm leading-5 text-ink-400 dark:text-grey-100"
-          style={{ letterSpacing: -0.084 }}
-        >
-          Unlock AI-powered tools to capture and organize your meetings
-          effortlessly.
-        </Text>
-      </View>
+    <AuthScreen className="gap-10">
+      <AuthHeader
+        title="Get Started for Free"
+        subtitle="Unlock AI-powered tools to capture and organize your meetings effortlessly."
+      />
 
       <View className="gap-4">
         <Input
@@ -127,23 +117,14 @@ export default function Signup() {
           disabled={!canSubmit}
           onPress={() => router.push("/verify-email")}
         />
-        <Pressable
-          accessibilityRole="link"
-          hitSlop={12}
+
+        <AuthSwitch
+          prompt="Already have an account?"
+          action="Login"
           onPress={() => router.replace("/login")}
-        >
-          <Text
-            className="text-center font-display-regular text-sm text-snow-900 leading-5"
-            style={{ letterSpacing: -0.084 }}
-          >
-            Already have an account?{" "}
-            <Text className="font-display-medium text-ink-500 dark:text-snow-600">
-              Login
-            </Text>
-          </Text>
-        </Pressable>
+        />
       </View>
-    </ScrollView>
+    </AuthScreen>
   );
 }
 

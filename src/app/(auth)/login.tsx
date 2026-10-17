@@ -1,9 +1,11 @@
 import { useRouter } from "expo-router";
 import { useState } from "react";
-import { Pressable, ScrollView, Text, View } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Pressable, Text, View } from "react-native";
 
 import { Apple, Facebook, Google } from "@/components/icons/social";
+import AuthHeader from "@/components/screens/auth/AuthHeader";
+import AuthScreen from "@/components/screens/auth/AuthScreen";
+import AuthSwitch from "@/components/screens/auth/AuthSwitch";
 import Button from "@/components/ui/Button";
 import Checkbox from "@/components/ui/Checkbox";
 import Input from "@/components/ui/Input";
@@ -16,31 +18,18 @@ const PROVIDERS = [
 
 export default function Login() {
   const router = useRouter();
-  const insets = useSafeAreaInsets();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(false);
 
   return (
-    <ScrollView
-      contentContainerClassName="grow justify-between gap-[54px] px-6 pt-16"
-      contentContainerStyle={{ paddingBottom: insets.bottom + 30 }}
-      keyboardShouldPersistTaps="handled"
-      showsVerticalScrollIndicator={false}
-    >
+    <AuthScreen className="justify-between gap-[54px]">
       <View className="gap-8">
         <View className="gap-10">
-          <View className="w-full items-center gap-3">
-            <Text className="text-center font-display-medium text-xl leading-none text-ink-500 dark:text-snow-600">
-              Welcome Back
-            </Text>
-            <Text
-              className="text-center font-display-regular text-sm leading-5 text-ink-400 dark:text-grey-100"
-              style={{ letterSpacing: -0.084 }}
-            >
-              Access your account to continue where you left off.
-            </Text>
-          </View>
+          <AuthHeader
+            title="Welcome Back"
+            subtitle="Access your account to continue where you left off."
+          />
 
           <View className="gap-4">
             <Input
@@ -83,22 +72,12 @@ export default function Login() {
         <SocialButtons />
       </View>
 
-      <Pressable
-        accessibilityRole="link"
-        hitSlop={12}
+      <AuthSwitch
+        prompt="Don't have an account?"
+        action="Sign up"
         onPress={() => router.replace("/signup")}
-      >
-        <Text
-          className="text-center font-display-regular text-sm text-snow-900 leading-5"
-          style={{ letterSpacing: -0.084 }}
-        >
-          Don&apos;t have an account?{" "}
-          <Text className="font-display-medium text-ink-500 dark:text-snow-600">
-            Sign up
-          </Text>
-        </Text>
-      </Pressable>
-    </ScrollView>
+      />
+    </AuthScreen>
   );
 }
 

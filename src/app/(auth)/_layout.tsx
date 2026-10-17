@@ -1,10 +1,8 @@
 import { Stack } from "expo-router";
-import { KeyboardAvoidingView, Platform, View } from "react-native";
+import { View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import Logo from "@/components/Logo";
-
-const LOGO_HEIGHT = 28;
 
 export default function AuthLayout() {
   const insets = useSafeAreaInsets();
@@ -13,11 +11,7 @@ export default function AuthLayout() {
   return (
     <View className="flex-1 items-center" style={{ paddingTop: top }}>
       <Logo />
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : undefined}
-        keyboardVerticalOffset={top + LOGO_HEIGHT}
-        className="w-full flex-1"
-      >
+      <View className="w-full flex-1">
         <Stack
           screenOptions={{
             headerShown: false,
@@ -25,7 +19,7 @@ export default function AuthLayout() {
             contentStyle: { backgroundColor: "transparent" },
           }}
         />
-      </KeyboardAvoidingView>
+      </View>
     </View>
   );
 }
