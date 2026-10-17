@@ -1,0 +1,19 @@
+<svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Storage</title>
+<g filter="url(#filter0_d_577_44755)">
+<rect x="5" y="4" width="44" height="44" rx="22" fill="#E7E8F7"/>
+<image x="17.0454" y="17.9879" width="19.9111" height="16.9363" preserveAspectRatio="none" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACcAAAAhCAYAAABa+rIoAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAOdEVYdFNvZnR3YXJlAEZpZ21hnrGWYwAABC9JREFUeAG1WM1OFEEQ7u6dDYqBiCZAAgjZk8Z4QqNXY+LVt/Dm1TMPok/AwXjgKmpMTCQa4sXEi1kDongAQlx2YXfaqmFq+CirZ6ORSpr+7/7qq5/pxbtSlpaWwvOVlbtZaF7hfnTRNxqNmA9yF0P0PvexWJjHr2trb19Sa+DOWDz/uXHzZqsZ3Qvv4rz39DdGJ3WxyBfLin4x5kO70z+6/2l9/bPMnYUEvvuw03nc6x7Md7tdd3Bw4Ljm0uv1qrb0uRz2uvPh6OjdtevXHzLj7ozELy4uNnd3914TAXeEKRbNmjB5ilWu8/iGDP+Keu08z2MjHGMd5LkLIRSbeZzbXHO/wZyUKvG6ag/bZOC/3L69uLq8vDzws7Oz53NHJo3xDl6OgoAsc1tr/5ktPt+5j982N2/xKecuXb686hLgkE30vZRPYhvn/kaBwEyG8CjjziH5ETHoWq2Wazab5qH6YovJSvMhClnKU2Zw/X7fdTodt7W15drt9lUG56enp93c3FyxkPzi1Gb0OTzMAqbHEQiu1XtYGBjfzeTMzMxwYDYYXJyamio2M3qupaQo18xwEaXQnCkTp1jns/kclsnJSRcWFhYqU/4RjYoRZ2it94Qy8lA5HsO+AEidJedlepDLYDCotNBAUz4j47xHX5ryyzrf5XZGEkupwOBm7UMalAYml6fAIxkoTIhgkLmMMn+gAS8bUhcMy3G4L5XMrSBBEyMGLpkGoLVFU6CZrdQiIFM5EBWxgkhYK10rmj6Hjm0B1WMWcJS6IMM5Yawc8+JzVSCIz0lbm0HG8VLNhAZgAbHypioxo+TnBTFGqKUpgkDGLKBWdGrGUnMlnmPm5OIUMMtfdNu6WO9PgbfcioczTW0q6pAFWaMlFQwaRCpghKCKOWRNgsBixMpR6DsIAOfqvjZWW/qE5djnjsdPWBOQ+gCfeP6kxDIxAtcpSOa4zYEnzHkdNdbFWkv8ntaB1EEk67UbYZ6rkjAO4MaU32mwKR/U66QtnyoBpTGUcyd5DiPV+oTpy+rm9KUiKf9EcACy8jnTlJo1ZLKO0dS8lfswP2pTF2blVyg+9KwHJWqX8jGdWC1LWO6CKUhAkul95XP4WbIuwjavrWPMMinOwffzFEA0a8Ec+5zkOXFUHepW4qwzeQosrhVAKIij8jl+pnORMJfaDWGwDhTOWWzqPIfg5JdYtrGxkY+Pj/+QDQwKk7B+bfia1wcCGJb7LMFPmCThPv1W/DAyMvIAgaVShcWOHDxsHBVIfdYEIP00fMbg8u3t7ScTExMt8r97VGYlyizN9Fvufwikpy4x9pN+Ojwlwt7L6Y2xsbGL+/v70+R7F6gfCKQnu+e0oaCSfZL/A0V1MUZ1ZL+gNp/BfpuXfV4fyz1FLetIKqrofD4vUh1oPvJaKtTs/xodHf2+s7Oz9xtl/oaGVW64CAAAAABJRU5ErkJggg=="/>
+</g>
+<defs>
+<filter id="filter0_d_577_44755" x="0" y="0" width="54" height="54" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="1"/>
+<feGaussianBlur stdDeviation="2.5"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.04295 0 0 0 0 0.0381079 0 0 0 0 0.0381079 0 0 0 0.25 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_577_44755"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_577_44755" result="shape"/>
+</filter>
+</defs>
+</svg>
