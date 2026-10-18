@@ -75,6 +75,7 @@ export default function Login() {
       <AuthSwitch
         prompt="Don't have an account?"
         action="Sign up"
+        className="text-snow-900"
         onPress={() => router.replace("/signup")}
       />
     </AuthScreen>

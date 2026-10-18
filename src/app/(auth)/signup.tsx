@@ -121,6 +121,7 @@ export default function Signup() {
         <AuthSwitch
           prompt="Already have an account?"
           action="Login"
+          className="text-snow-900"
           onPress={() => router.replace("/login")}
         />
       </View>

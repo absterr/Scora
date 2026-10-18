@@ -80,6 +80,11 @@ export default function OTPInput({
               }
               keyboardType="number-pad"
               maxLength={length}
+              placeholder="0"
+              // #8A8A8A (light), #484848 (dark)
+              placeholderTextColor={
+                colorScheme === "dark" ? "#484848" : "#8A8A8A"
+              }
               selectionColor={colorScheme === "dark" ? "#FFFFFF" : "#101010"}
               accessibilityLabel={`Verification code digit ${index + 1}`}
               className={cn(
