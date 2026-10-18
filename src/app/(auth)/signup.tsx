@@ -115,7 +115,12 @@ export default function Signup() {
           label="Create Account"
           className="h-[42px]"
           disabled={!canSubmit}
-          onPress={() => router.push("/verify-email")}
+          onPress={() =>
+            router.push({
+              pathname: "/verify-email",
+              params: { email: email.trim() },
+            })
+          }
         />
 
         <AuthSwitch

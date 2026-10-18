@@ -1,6 +1,6 @@
 import { Text, View } from "react-native";
 
-type AuthHeaderProps = { title: string; subtitle: string };
+type AuthHeaderProps = { title: string; subtitle: React.ReactNode };
 
 export default function AuthHeader({ title, subtitle }: AuthHeaderProps) {
   return (
