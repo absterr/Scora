@@ -17,3 +17,5 @@ export { default as Upload } from "@/assets/icons/solid/upload.svg";
 export { default as Users } from "@/assets/icons/solid/users.svg";
 
 export { default as VideoRecorderOff } from "@/assets/icons/solid/video-recorder-off.svg";
+
+export { default as Warning } from "@/assets/icons/solid/warning.svg";
