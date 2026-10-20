@@ -7,7 +7,7 @@ import Checkbox from "@/components/ui/Checkbox";
 import Collapsible from "@/components/ui/Collapsible";
 import Selectable from "@/components/ui/Selectable";
 
-const TEMPLATES = ["Brief", "Key points & decisions", "Detailed"];
+const TEMPLATES = ["Bullet", "Minutes of Meeting (MOM)", "Action Items"];
 
 const EXPORT_LANGUAGES = [
   { label: "English", value: "en" },

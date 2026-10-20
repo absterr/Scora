@@ -18,26 +18,6 @@ const RETENTION = [
   { label: "Forever", value: "forever" },
 ];
 
-const ToggleRow = ({
-  label,
-  value,
-  onValueChange,
-}: {
-  label: string;
-  value: boolean;
-  onValueChange: (value: boolean) => void;
-}) => (
-  <View className="flex-row items-center justify-between gap-2.5">
-    <Text
-      className="flex-1 font-display-regular text-sm leading-5 text-ink-500 dark:text-snow-600"
-      style={TIGHT}
-    >
-      {label}
-    </Text>
-    <ToggleSwitch value={value} onValueChange={onValueChange} />
-  </View>
-);
-
 export default function SecurityPrivacy() {
   const { top } = useSafeAreaInsets();
   const [twoFactor, setTwoFactor] = useState(false);
@@ -117,3 +97,23 @@ export default function SecurityPrivacy() {
     </ScrollView>
   );
 }
+
+const ToggleRow = ({
+  label,
+  value,
+  onValueChange,
+}: {
+  label: string;
+  value: boolean;
+  onValueChange: (value: boolean) => void;
+}) => (
+  <View className="flex-row items-center justify-between gap-2.5">
+    <Text
+      className="flex-1 font-display-regular text-sm leading-5 text-ink-500 dark:text-snow-600"
+      style={TIGHT}
+    >
+      {label}
+    </Text>
+    <ToggleSwitch value={value} onValueChange={onValueChange} />
+  </View>
+);

@@ -12,6 +12,8 @@ export { default as FaceID } from "@/assets/icons/line/face-id.svg";
 export { default as Fingerprint } from "@/assets/icons/line/fingerprint.svg";
 export { default as FolderLine } from "@/assets/icons/line/folder-line.svg";
 
+export { default as Logout } from "@/assets/icons/line/log-out.svg";
+
 export { default as MagicWandLine } from "@/assets/icons/line/magic-wand-line.svg";
 
 export { default as User } from "@/assets/icons/line/user.svg";
