@@ -2,7 +2,9 @@
 
 export { default as CheckCircle } from "@/assets/icons/solid/check-circle.svg";
 
-export { default as MagicWand } from "@/assets/icons/solid/magic-wand.svg";
+export { default as FolderSolid } from "@/assets/icons/solid/folder-solid.svg";
+
+export { default as MagicWandSolid } from "@/assets/icons/solid/magic-wand-solid.svg";
 export { default as Message } from "@/assets/icons/solid/message.svg";
 export { default as Microphone } from "@/assets/icons/solid/microphone.svg";
 
@@ -17,5 +19,7 @@ export { default as Upload } from "@/assets/icons/solid/upload.svg";
 export { default as Users } from "@/assets/icons/solid/users.svg";
 
 export { default as VideoRecorderOff } from "@/assets/icons/solid/video-recorder-off.svg";
+export { default as VideoRecorderSolid } from "@/assets/icons/solid/video-recorder-solid.svg";
 
 export { default as Warning } from "@/assets/icons/solid/warning.svg";
+export { default as WrenchSolid } from "@/assets/icons/solid/wrench-solid.svg";

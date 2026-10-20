@@ -2,14 +2,40 @@ import { Tabs } from "expo-router";
 import { useColorScheme } from "nativewind";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import { Folder, VideoRecorder, Wrench } from "@/components/icons/line";
-import { MagicWand } from "@/components/icons/solid";
+import {
+  FolderLine,
+  MagicWandLine,
+  VideoRecorderLine,
+  WrenchLine,
+} from "@/components/icons/line";
+import {
+  FolderSolid,
+  MagicWandSolid,
+  VideoRecorderSolid,
+  WrenchSolid,
+} from "@/components/icons/solid";
+import { PlatformPressable } from "expo-router/build/react-navigation";
 
 const TABS = [
-  { name: "meeting", title: "Meeting", Icon: VideoRecorder },
-  { name: "summaries", title: "Summaries", Icon: MagicWand },
-  { name: "documents", title: "Documents", Icon: Folder },
-  { name: "settings", title: "Settings", Icon: Wrench },
+  {
+    name: "meeting",
+    title: "Meeting",
+    Line: VideoRecorderLine,
+    Solid: VideoRecorderSolid,
+  },
+  {
+    name: "summaries",
+    title: "Summaries",
+    Line: MagicWandLine,
+    Solid: MagicWandSolid,
+  },
+  {
+    name: "documents",
+    title: "Documents",
+    Line: FolderLine,
+    Solid: FolderSolid,
+  },
+  { name: "settings", title: "Settings", Line: WrenchLine, Solid: WrenchSolid },
 ];
 
 const INACTIVE = "#8A8A8A"; // snow-800
@@ -43,15 +69,16 @@ export default function MainLayout() {
         },
       }}
     >
-      {TABS.map(({ name, title, Icon }) => (
+      {TABS.map(({ name, title, Line, Solid }) => (
         <Tabs.Screen
           key={name}
           name={name}
           options={{
             title,
-            tabBarIcon: ({ color }) => (
-              <Icon width={20} height={20} color={color} />
-            ),
+            tabBarIcon: ({ color, focused }) => {
+              const Icon = focused ? Solid : Line;
+              return <Icon width={20} height={20} color={color} />;
+            },
           }}
         />
       ))}
