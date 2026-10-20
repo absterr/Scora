@@ -9,7 +9,7 @@ const TIGHT = { letterSpacing: -0.084 };
 
 const SECTIONS: { label: string; href?: Href }[] = [
   { label: "Security & Privacy", href: "/settings/security" },
-  { label: "Video & Audio" },
+  { label: "Video & Audio", href: "/settings/video-audio" },
   { label: "Captions & Translation" },
   { label: "AI & Summaries" },
   { label: "Documents & Export" },
