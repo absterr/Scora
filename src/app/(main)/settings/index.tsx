@@ -14,7 +14,7 @@ const SECTIONS: { label: string; href?: Href }[] = [
   { label: "AI & Summaries", href: "/settings/ai-summaries" },
   { label: "Documents & Export", href: "/settings/docs-export" },
   { label: "Integrations", href: "/settings/integrations" },
-  { label: "Notifications" },
+  { label: "Notifications", href: "/settings/notifications" },
   { label: "Plan & Billing" },
   { label: "Team & Roles" },
   { label: "About" },
