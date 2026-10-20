@@ -98,7 +98,8 @@ export default function SecurityPrivacy() {
 
         <Pressable
           accessibilityRole="button"
-          className="h-10 flex-row items-center justify-between gap-2 rounded-xl border border-brand-100 bg-[rgba(205,207,229,0.22)] px-3 dark:border-grey-500 dark:bg-grey-800"
+          className={`h-10 px-3 flex-row items-center justify-between gap-2 rounded-xl
+            border border-brand-100 bg-[rgba(205,207,229,0.22)]  dark:border-grey-500 dark:bg-grey-800`}
         >
           <Text
             className="font-display-medium text-xs leading-4 text-error-500"

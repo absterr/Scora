@@ -1,5 +1,10 @@
-import { useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { Pressable, Text, View } from "react-native";
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from "react-native-reanimated";
 
 import { ChevronDown } from "@/components/icons/line";
 import { cn } from "@/lib/utils";
@@ -16,6 +21,7 @@ type CollapsibleProps = {
 };
 
 const TIGHT = { letterSpacing: -0.084 };
+const DURATION = 200;
 
 export default function Collapsible({
   title,
@@ -30,6 +36,22 @@ export default function Collapsible({
   const [internal, setInternal] = useState(defaultOpen);
   const isOpen = open ?? internal;
 
+  const progress = useSharedValue(isOpen ? 1 : 0);
+  const contentHeight = useSharedValue(0);
+
+  useEffect(() => {
+    progress.set(withTiming(isOpen ? 1 : 0, { duration: DURATION }));
+  }, [isOpen, progress]);
+
+  const bodyStyle = useAnimatedStyle(() => ({
+    height: contentHeight.get() * progress.get(),
+    opacity: progress.get(),
+  }));
+
+  const chevronStyle = useAnimatedStyle(() => ({
+    transform: [{ rotate: `${progress.get() * 180}deg` }],
+  }));
+
   const toggle = () => {
     if (open === undefined) setInternal(!isOpen);
     onOpenChange?.(!isOpen);
@@ -38,7 +60,7 @@ export default function Collapsible({
   return (
     <View
       className={cn(
-        "p-3 gap-2.5 rounded-xl border border-brand-100 dark:border-grey-500",
+        "p-3 rounded-xl border border-brand-100 dark:border-grey-500",
         "bg-[rgba(205,207,229,0.22)] dark:bg-grey-800",
         className
       )}
@@ -47,10 +69,7 @@ export default function Collapsible({
         onPress={toggle}
         accessibilityRole="button"
         accessibilityState={{ expanded: isOpen }}
-        className={cn(
-          "flex-row items-center gap-2.5",
-          isOpen && "border-b border-brand-100 pb-3 dark:border-grey-500"
-        )}
+        className="flex-row items-center gap-2.5"
       >
         <View className="flex-1 gap-1">
           <Text
@@ -71,15 +90,28 @@ export default function Collapsible({
             </Text>
           ) : null}
         </View>
-        <View style={{ transform: [{ rotate: isOpen ? "180deg" : "0deg" }] }}>
+        <Animated.View style={chevronStyle}>
           <ChevronDown
             width={16}
             height={16}
             className="text-ink-400 dark:text-grey-100"
           />
-        </View>
+        </Animated.View>
       </Pressable>
-      {isOpen ? children : null}
+
+      <Animated.View
+        style={[{ overflow: "hidden" }, bodyStyle]}
+        pointerEvents={isOpen ? "auto" : "none"}
+      >
+        <View
+          className="absolute inset-x-0 top-0"
+          onLayout={(e) => contentHeight.set(e.nativeEvent.layout.height)}
+        >
+          <View className="mt-3 border-t border-brand-100 pt-2.5 dark:border-grey-500">
+            {children}
+          </View>
+        </View>
+      </Animated.View>
     </View>
   );
 }
