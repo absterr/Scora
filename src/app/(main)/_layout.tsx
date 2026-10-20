@@ -44,6 +44,7 @@ const ACTIVE = { light: "#5B66C6", dark: "#FDFDFD" }; // brand-300, snow-100
 export default function MainLayout() {
   const { colorScheme } = useColorScheme();
   const { bottom } = useSafeAreaInsets();
+  const inset = Math.max(bottom, 30);
 
   return (
     <Tabs
@@ -57,9 +58,9 @@ export default function MainLayout() {
           backgroundColor: "transparent",
           borderTopWidth: 0,
           elevation: 0,
-          height: 64 + bottom,
+          height: 64 + inset,
           paddingTop: 12,
-          paddingBottom: bottom,
+          paddingBottom: 12 + inset,
         },
         tabBarLabelStyle: {
           fontFamily: "InterDisplay-Regular",
@@ -75,6 +76,13 @@ export default function MainLayout() {
           name={name}
           options={{
             title,
+            tabBarButton: (props) => (
+              <PlatformPressable
+                {...props}
+                pressColor="transparent"
+                pressOpacity={1}
+              />
+            ),
             tabBarIcon: ({ color, focused }) => {
               const Icon = focused ? Solid : Line;
               return <Icon width={20} height={20} color={color} />;
