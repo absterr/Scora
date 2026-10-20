@@ -1,6 +1,8 @@
 // -- Line Icons --
 
 export { default as ChevronDown } from "@/assets/icons/line/chevron-down.svg";
+export { default as ChevronLeft } from "@/assets/icons/line/chevron-left.svg";
+export { default as ChevronRight } from "@/assets/icons/line/chevron-right.svg";
 export { default as Copy } from "@/assets/icons/line/copy.svg";
 
 export { default as EyeOff } from "@/assets/icons/line/eye-off.svg";
