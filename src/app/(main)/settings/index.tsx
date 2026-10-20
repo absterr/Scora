@@ -15,9 +15,9 @@ const SECTIONS: { label: string; href?: Href }[] = [
   { label: "Documents & Export", href: "/settings/docs-export" },
   { label: "Integrations", href: "/settings/integrations" },
   { label: "Notifications", href: "/settings/notifications" },
-  { label: "Plan & Billing" },
+  { label: "Plan & Billing", href: "/settings/billing" },
+  { label: "About", href: "/settings/about" },
   { label: "Team & Roles" },
-  { label: "About" },
 ];
 
 export default function Settings() {
