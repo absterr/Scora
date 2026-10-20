@@ -1,8 +1,8 @@
-import { useRouter } from "expo-router";
 import { Image, Pressable, ScrollView, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import { ChevronLeft, ChevronRight } from "@/components/icons/line";
+import { ChevronRight } from "@/components/icons/line";
+import ScreenHeader from "@/components/screens/settings/ScreenHeader";
 import { cn } from "@/lib/utils";
 
 const TIGHT = { letterSpacing: -0.084 };
@@ -17,7 +17,6 @@ const FIELDS = [
 ];
 
 export default function Profile() {
-  const router = useRouter();
   const { top } = useSafeAreaInsets();
 
   return (
@@ -25,30 +24,10 @@ export default function Profile() {
       contentContainerClassName="gap-10 px-4 pb-6"
       contentContainerStyle={{ paddingTop: top + 24 }}
     >
-      <View className="gap-1">
-        <Pressable
-          onPress={() => router.back()}
-          hitSlop={12}
-          accessibilityRole="button"
-          accessibilityLabel="Go back"
-          className="flex-row items-center gap-1.5"
-        >
-          <ChevronLeft
-            width={16}
-            height={16}
-            className="text-ink-400 dark:text-grey-100"
-          />
-          <Text className="flex-1 font-display-medium text-xl leading-6 text-ink-500 dark:text-snow-600">
-            Profile and Identity
-          </Text>
-        </Pressable>
-        <Text
-          className="font-display-regular text-sm leading-5 text-ink-400 dark:text-grey-100"
-          style={TIGHT}
-        >
-          Manage your personal information and preferences.
-        </Text>
-      </View>
+      <ScreenHeader
+        title="Profile and Identity"
+        description="Manage your personal information and preferences."
+      />
 
       <View className="gap-6">
         <View className="items-center gap-3">

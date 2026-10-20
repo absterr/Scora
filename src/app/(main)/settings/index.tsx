@@ -1,4 +1,4 @@
-import { useRouter } from "expo-router";
+import { Href, useRouter } from "expo-router";
 import { Image, Pressable, ScrollView, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -7,17 +7,17 @@ import { cn } from "@/lib/utils";
 
 const TIGHT = { letterSpacing: -0.084 };
 
-const SECTIONS = [
-  "Security & Privacy",
-  "Video & Audio",
-  "Captions & Translation",
-  "AI & Summaries",
-  "Documents & Export",
-  "Integrations",
-  "Notifications",
-  "Plan & Billing",
-  "Team & Roles",
-  "About",
+const SECTIONS: { label: string; href?: Href }[] = [
+  { label: "Security & Privacy", href: "/settings/security" },
+  { label: "Video & Audio" },
+  { label: "Captions & Translation" },
+  { label: "AI & Summaries" },
+  { label: "Documents & Export" },
+  { label: "Integrations" },
+  { label: "Notifications" },
+  { label: "Plan & Billing" },
+  { label: "Team & Roles" },
+  { label: "About" },
 ];
 
 export default function Settings() {
@@ -73,9 +73,10 @@ export default function Settings() {
           className={`overflow-hidden rounded-xl border border-[rgba(205,207,229,0.22)]
             bg-[rgba(205,207,229,0.22)] dark:border-grey-500 dark:bg-snow-300/[0.04]`}
         >
-          {SECTIONS.map((label, i) => (
+          {SECTIONS.map(({ label, href }, i) => (
             <Pressable
               key={label}
+              onPress={href ? () => router.push(href) : undefined}
               accessibilityRole="button"
               className={cn(
                 "h-11 flex-row items-center gap-2.5 px-3",
