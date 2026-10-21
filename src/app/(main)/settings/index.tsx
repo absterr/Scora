@@ -17,7 +17,7 @@ const SECTIONS: { label: string; href?: Href }[] = [
   { label: "Notifications", href: "/settings/notifications" },
   { label: "Plan & Billing", href: "/settings/billing" },
   { label: "About", href: "/settings/about" },
-  { label: "Team & Roles" },
+  { label: "Team & Roles", href: "/settings/team" },
 ];
 
 export default function Settings() {
