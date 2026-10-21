@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { Image, Pressable, ScrollView, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useRouter } from "expo-router";
 
 import AIBubble from "@/components/AIBubble";
 import { AppLogo } from "@/components/icons/app";
@@ -28,37 +29,8 @@ const BODY = "font-display-regular text-sm leading-5";
 const MUTED = "text-ink-400 dark:text-grey-100";
 const STRONG = "text-ink-500 dark:text-snow-600";
 
-const FeatureCard = ({
-  icon: Icon,
-  title,
-  description,
-}: {
-  icon: typeof Calendar;
-  title: string;
-  description: string;
-}) => (
-  <Pressable
-    accessibilityRole="button"
-    className={`h-[114px] flex-1 justify-center gap-2.5 rounded-xl border p-3 ${SURFACE}`}
-  >
-    <View
-      className="size-6 items-center justify-center rounded-md bg-brand-400 dark:bg-[#EBECFA]"
-      style={{ boxShadow: "0 1.5px 4.5px rgba(11,10,10,0.25)" }}
-    >
-      <Icon width={12} height={12} className="text-ink-50 dark:text-ink-500" />
-    </View>
-    <View className="gap-1">
-      <Text className={`${BODY} ${STRONG}`} style={TIGHT}>
-        {title}
-      </Text>
-      <Text className={`font-display-regular text-xs ${MUTED}`}>
-        {description}
-      </Text>
-    </View>
-  </Pressable>
-);
-
 export default function Meetings() {
+  const router = useRouter();
   const { top } = useSafeAreaInsets();
   const barRef = useRef<View>(null);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -218,9 +190,43 @@ export default function Meetings() {
         items={[
           { label: "New Meeting", icon: VideoRecorderLine },
           { label: "Schedule Meeting", icon: Calendar },
-          { label: "Join With Link", icon: BrokenLink },
+          {
+            label: "Join With Link",
+            icon: BrokenLink,
+            onPress: () => router.push("/meeting/join"),
+          },
         ]}
       />
     </ScrollView>
   );
 }
+
+const FeatureCard = ({
+  icon: Icon,
+  title,
+  description,
+}: {
+  icon: typeof Calendar;
+  title: string;
+  description: string;
+}) => (
+  <Pressable
+    accessibilityRole="button"
+    className={`h-[114px] flex-1 justify-center gap-2.5 rounded-xl border p-3 ${SURFACE}`}
+  >
+    <View
+      className="size-6 items-center justify-center rounded-md bg-brand-400 dark:bg-[#EBECFA]"
+      style={{ boxShadow: "0 1.5px 4.5px rgba(11,10,10,0.25)" }}
+    >
+      <Icon width={12} height={12} className="text-ink-50 dark:text-ink-500" />
+    </View>
+    <View className="gap-1">
+      <Text className={`${BODY} ${STRONG}`} style={TIGHT}>
+        {title}
+      </Text>
+      <Text className={`font-display-regular text-xs ${MUTED}`}>
+        {description}
+      </Text>
+    </View>
+  </Pressable>
+);
