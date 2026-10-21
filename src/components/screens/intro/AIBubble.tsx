@@ -29,7 +29,7 @@ export default function AIBubble() {
   return (
     <View className="h-[294px] w-[180px]">
       <Animated.Image
-        source={require("@/assets/images/ai-bubble.png")}
+        source={require("@/assets/images/ai-bubble-two.png")}
         style={[
           { width: "100%", height: "100%", transformOrigin: "50% 30%" },
           pulse,

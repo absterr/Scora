@@ -15,7 +15,7 @@ export { default as Play } from "@/assets/icons/solid/play.svg";
 
 export { default as ShieldTick } from "@/assets/icons/solid/shield-tick.svg";
 export { default as SmileFace } from "@/assets/icons/solid/smile-face.svg";
-export { default as Stars } from "@/assets/icons/solid/stars.svg";
+export { default as StarsSolid } from "@/assets/icons/solid/stars-solid.svg";
 
 export { default as Upload } from "@/assets/icons/solid/upload.svg";
 export { default as Users } from "@/assets/icons/solid/users.svg";
