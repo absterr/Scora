@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { View } from "react-native";
+import { View, type ImageSourcePropType } from "react-native";
 import Animated, {
   Easing,
   interpolate,
@@ -9,7 +9,15 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 
-export default function AIBubble() {
+export default function AIBubble({
+  source,
+  className,
+  origin = "50% 30%",
+}: {
+  source: ImageSourcePropType;
+  className?: string;
+  origin?: string;
+}) {
   const progress = useSharedValue(0);
 
   useEffect(() => {
@@ -27,11 +35,11 @@ export default function AIBubble() {
   }));
 
   return (
-    <View className="h-[294px] w-[180px]">
+    <View className={className}>
       <Animated.Image
-        source={require("@/assets/images/ai-bubble-two.png")}
+        source={source}
         style={[
-          { width: "100%", height: "100%", transformOrigin: "50% 30%" },
+          { width: "100%", height: "100%", transformOrigin: origin },
           pulse,
         ]}
       />

@@ -4,7 +4,7 @@ import Animated, { FadeInDown, FadeOutUp } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import Logo from "@/components/Logo";
-import AIBubble from "@/components/screens/intro/AIBubble";
+import AIBubble from "@/components/AIBubble";
 import DocExportCard from "@/components/screens/intro/DocExportCard";
 import FormatList from "@/components/screens/intro/FormatList";
 import LiveTranscriptCard from "@/components/screens/intro/LiveTranscriptCard";
@@ -109,13 +109,20 @@ const ExportMid = () => (
   </View>
 );
 
+const IntroBubble = () => (
+  <AIBubble
+    source={require("@/assets/images/ai-bubble-two.png")}
+    className="h-[294px] w-[180px]"
+  />
+);
+
 const SLIDES = [
   {
     key: "meeting",
     title: "AI Meeting",
     description:
       "Record conversations, get instant transcripts, and smart summaries to keep everyone aligned.",
-    Mid: AIBubble,
+    Mid: IntroBubble,
   },
   {
     key: "translate",
