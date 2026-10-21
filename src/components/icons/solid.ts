@@ -2,6 +2,8 @@
 
 export { default as CheckCircle } from "@/assets/icons/solid/check-circle.svg";
 
+export { default as DotsHorizontal } from "@/assets/icons/solid/dots-horizontal.svg";
+
 export { default as FolderSolid } from "@/assets/icons/solid/folder-solid.svg";
 
 export { default as MagicWandSolid } from "@/assets/icons/solid/magic-wand-solid.svg";

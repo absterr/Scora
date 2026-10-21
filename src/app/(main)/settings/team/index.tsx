@@ -4,8 +4,10 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import ScreenHeader from "@/components/screens/settings/ScreenHeader";
 import TeamCard from "@/components/screens/settings/TeamCard";
 import { TEAMS } from "@/lib/mock-teams";
+import { useRouter } from "expo-router";
 
 export default function TeamRoles() {
+  const router = useRouter();
   const { top } = useSafeAreaInsets();
 
   return (
@@ -27,7 +29,11 @@ export default function TeamRoles() {
         </Text>
         <View className="gap-2">
           {TEAMS.map((team) => (
-            <TeamCard key={team.id} team={team} />
+            <TeamCard
+              key={team.id}
+              team={team}
+              onPress={() => router.push(`/settings/team/${team.id}`)}
+            />
           ))}
         </View>
       </View>
