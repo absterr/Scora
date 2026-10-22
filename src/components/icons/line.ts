@@ -1,5 +1,6 @@
 // -- Line Icons --
 
+export { default as Bank } from "@/assets/icons/line/bank.svg";
 export { default as Bell } from "@/assets/icons/line/bell.svg";
 export { default as BrokenLink } from "@/assets/icons/line/broken-link.svg";
 
@@ -23,6 +24,8 @@ export { default as Logout } from "@/assets/icons/line/log-out.svg";
 
 export { default as MagicWandLine } from "@/assets/icons/line/magic-wand-line.svg";
 export { default as Menu } from "@/assets/icons/line/menu.svg";
+
+export { default as Plus } from "@/assets/icons/line/plus.svg";
 
 export { default as Search } from "@/assets/icons/line/search.svg";
 export { default as StarsLine } from "@/assets/icons/line/stars-line.svg";
