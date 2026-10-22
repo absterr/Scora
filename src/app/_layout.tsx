@@ -8,6 +8,7 @@ import { Image, View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
+import { ModalProvider } from "@/components/ui/Modal";
 import "../global.css";
 import "../lib/svg-interop";
 
@@ -35,27 +36,29 @@ export default function RootLayout() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
         <BottomSheetModalProvider>
-          <View className="flex-1 bg-snow-500 dark:bg-ink-800">
-            <Image
-              source={background}
-              resizeMode="cover"
-              style={{
-                width: "100%",
-                aspectRatio: 375 / 443,
-                position: "absolute",
-                top: 0,
-              }}
-            />
+          <ModalProvider>
+            <View className="flex-1 bg-snow-500 dark:bg-ink-800">
+              <Image
+                source={background}
+                resizeMode="cover"
+                style={{
+                  width: "100%",
+                  aspectRatio: 375 / 443,
+                  position: "absolute",
+                  top: 0,
+                }}
+              />
 
-            <Stack
-              screenOptions={{
-                headerShown: false,
-                contentStyle: {
-                  backgroundColor: "transparent",
-                },
-              }}
-            />
-          </View>
+              <Stack
+                screenOptions={{
+                  headerShown: false,
+                  contentStyle: {
+                    backgroundColor: "transparent",
+                  },
+                }}
+              />
+            </View>
+          </ModalProvider>
         </BottomSheetModalProvider>
       </SafeAreaProvider>
     </GestureHandlerRootView>
