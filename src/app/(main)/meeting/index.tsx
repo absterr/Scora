@@ -1,7 +1,7 @@
+import { useRouter } from "expo-router";
 import { useRef, useState } from "react";
 import { Image, Pressable, ScrollView, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useRouter } from "expo-router";
 
 import AIBubble from "@/components/AIBubble";
 import { AppLogo } from "@/components/icons/app";
@@ -189,7 +189,11 @@ export default function Meetings() {
         anchorRef={barRef}
         items={[
           { label: "New Meeting", icon: VideoRecorderLine },
-          { label: "Schedule Meeting", icon: Calendar },
+          {
+            label: "Schedule Meeting",
+            icon: Calendar,
+            onPress: () => router.push("/meeting/schedule"),
+          },
           {
             label: "Join With Link",
             icon: BrokenLink,
