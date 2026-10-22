@@ -3,6 +3,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { ScrollView, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
+import InsightPanel from "@/components/screens/room/InsightPanel";
 import InviteCard from "@/components/screens/room/InviteCard";
 import JoinRequestModal from "@/components/screens/room/JoinRequestModal";
 import ParticipantGrid from "@/components/screens/room/ParticipantGrid";
@@ -11,6 +12,7 @@ import PendingCard from "@/components/screens/room/PendingCard";
 import RoomControls from "@/components/screens/room/RoomControls";
 import RoomTopbar from "@/components/screens/room/RoomTopbar";
 import { AVATARS } from "@/lib/avatars";
+import { setLastMeeting } from "@/lib/last-meeting";
 
 type Guest = Omit<Participant, "micOn">;
 
@@ -25,7 +27,7 @@ const MOCK_GUESTS: Guest[] = [
 
 export default function Room() {
   const router = useRouter();
-  const { role } = useLocalSearchParams<{
+  const { role, name } = useLocalSearchParams<{
     role?: "host" | "guest";
     name?: string;
   }>();
@@ -88,13 +90,24 @@ export default function Room() {
 
   const leave = () => router.back();
 
+  const endMeeting = () => {
+    if (!liveSince.current) return leave();
+    setLastMeeting({
+      name: name ?? "Instant meeting",
+      endedAt: Date.now(),
+      durationSec: Math.round((Date.now() - liveSince.current) / 1000),
+      participants: participants.map((p) => p.name),
+    });
+    router.dismissTo("/summaries");
+  };
+
   return (
     <View
       className="flex-1 bg-snow-500 dark:bg-ink-800"
       style={{ paddingTop: top + 16, paddingBottom: bottom }}
     >
       <View className="flex-1 gap-4 px-6">
-        <RoomTopbar onBack={leave} onEnd={leave} />
+        <RoomTopbar onBack={leave} onEnd={endMeeting} />
         {!live ? (
           <View className="flex-1 justify-center">
             <PendingCard onClose={leave} />
@@ -106,6 +119,7 @@ export default function Room() {
             showsVerticalScrollIndicator={false}
           >
             <ParticipantGrid participants={participants} />
+            <InsightPanel />
           </ScrollView>
         ) : (
           <View className="flex-1 gap-4">
