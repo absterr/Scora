@@ -188,7 +188,12 @@ export default function Meetings() {
         onClose={() => setMenuOpen(false)}
         anchorRef={barRef}
         items={[
-          { label: "New Meeting", icon: VideoRecorderLine },
+          {
+            label: "New Meeting",
+            icon: VideoRecorderLine,
+            onPress: () =>
+              router.push({ pathname: "/room", params: { role: "host" } }),
+          },
           {
             label: "Schedule Meeting",
             icon: Calendar,

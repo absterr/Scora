@@ -21,6 +21,7 @@ type ModalProps = {
   onClose: () => void;
   children: ReactNode;
   topBar?: ReactNode;
+  handle?: boolean;
   className?: string;
 };
 
@@ -29,6 +30,7 @@ export default function Modal({
   onClose,
   children,
   topBar,
+  handle,
   className,
 }: ModalProps) {
   const id = useId();
@@ -80,7 +82,9 @@ export default function Modal({
           >
             {children}
           </ScrollView>
-          <View className="h-[5px] w-10 self-center rounded-full bg-ink-200 dark:bg-snow-600" />
+          {handle && (
+            <View className="h-[5px] w-10 self-center rounded-full bg-ink-200 dark:bg-snow-600" />
+          )}
         </View>
       </KeyboardAvoidingView>
     </Animated.View>
