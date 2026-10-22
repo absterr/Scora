@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 type IconComponent = FC<SvgProps>;
 
 type BaseProps = Omit<PressableProps, "children"> & {
-  variant?: "primary" | "secondary" | "ghost";
+  variant?: "primary" | "secondary" | "ghost" | "accent";
   className?: string;
 };
 
