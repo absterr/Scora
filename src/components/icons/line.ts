@@ -1,7 +1,7 @@
 // -- Line Icons --
 
-export { default as BrokenLink } from "@/assets/icons/line/broken-link.svg";
 export { default as Bell } from "@/assets/icons/line/bell.svg";
+export { default as BrokenLink } from "@/assets/icons/line/broken-link.svg";
 
 export { default as Calendar } from "@/assets/icons/line/calendar.svg";
 export { default as ChevronDown } from "@/assets/icons/line/chevron-down.svg";
@@ -9,6 +9,7 @@ export { default as ChevronLeft } from "@/assets/icons/line/chevron-left.svg";
 export { default as ChevronRight } from "@/assets/icons/line/chevron-right.svg";
 export { default as Copy } from "@/assets/icons/line/copy.svg";
 
+export { default as Expand } from "@/assets/icons/line/expand.svg";
 export { default as EyeOff } from "@/assets/icons/line/eye-off.svg";
 export { default as Eye } from "@/assets/icons/line/eye.svg";
 
@@ -16,6 +17,7 @@ export { default as FaceID } from "@/assets/icons/line/face-id.svg";
 export { default as Fingerprint } from "@/assets/icons/line/fingerprint.svg";
 export { default as FolderLine } from "@/assets/icons/line/folder-line.svg";
 
+export { default as Loading } from "@/assets/icons/line/loading.svg";
 export { default as Logout } from "@/assets/icons/line/log-out.svg";
 
 export { default as MagicWandLine } from "@/assets/icons/line/magic-wand-line.svg";
