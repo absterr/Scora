@@ -1,4 +1,4 @@
-# Bitfunds
+# Scora
 
 An AI video communication application built with React Native, Expo and NativeWind.
 
