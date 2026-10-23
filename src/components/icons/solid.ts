@@ -26,3 +26,5 @@ export { default as VideoRecorderSolid } from "@/assets/icons/solid/video-record
 
 export { default as Warning } from "@/assets/icons/solid/warning.svg";
 export { default as WrenchSolid } from "@/assets/icons/solid/wrench-solid.svg";
+
+export { default as XCircle } from "@/assets/icons/solid/x-circle.svg";
