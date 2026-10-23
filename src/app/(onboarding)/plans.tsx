@@ -71,6 +71,7 @@ export default function Plans() {
       <UpgradePlanFlow
         visible={open}
         onClose={() => setOpen(false)}
+        planTitle={selected?.title ?? ""}
         price={selected?.price[billing] ?? ""}
       />
     </View>
