@@ -2,9 +2,10 @@ import { useState } from "react";
 import { useWindowDimensions, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import CouponStep from "@/components/screens/plans/CouponStep";
 import StepFlow, { type StepDef } from "@/components/StepFlow";
 import { Modal } from "@/components/ui/Modal";
+import BillingStep, { EMPTY_BILLING, type BillingDetails } from "./BillingStep";
+import CouponStep from "./CouponStep";
 import TrialStep from "./TrialStep";
 
 type UpgradePlanFlowProps = {
@@ -24,6 +25,7 @@ export default function UpgradePlanFlow({
   const { height } = useWindowDimensions();
   const { top, bottom } = useSafeAreaInsets();
   const [coupon, setCoupon] = useState("");
+  const [billing, setBilling] = useState<BillingDetails>(EMPTY_BILLING);
 
   const flowHeight = Math.min(
     FLOW_HEIGHT,
@@ -51,6 +53,17 @@ export default function UpgradePlanFlow({
           onBack={goBack}
           onSkip={goNext}
           onStart={goNext}
+        />
+      ),
+    },
+    {
+      key: "billing",
+      render: ({ goNext, goBack }) => (
+        <BillingStep
+          values={billing}
+          onChange={(key, value) => setBilling((b) => ({ ...b, [key]: value }))}
+          onBack={goBack}
+          onNext={goNext}
         />
       ),
     },
