@@ -12,6 +12,7 @@ export { default as Microphone } from "@/assets/icons/solid/microphone.svg";
 
 export { default as PauseCircle } from "@/assets/icons/solid/pause-circle.svg";
 export { default as Play } from "@/assets/icons/solid/play.svg";
+export { default as PlusCircle } from "@/assets/icons/solid/plus-circle.svg";
 
 export { default as ShieldTick } from "@/assets/icons/solid/shield-tick.svg";
 export { default as SmileFace } from "@/assets/icons/solid/smile-face.svg";

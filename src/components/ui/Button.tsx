@@ -8,6 +8,7 @@ type IconComponent = FC<SvgProps>;
 
 type BaseProps = Omit<PressableProps, "children"> & {
   variant?: "primary" | "secondary" | "ghost" | "accent";
+  size?: "md" | "sm";
   className?: string;
 };
 
@@ -40,6 +41,7 @@ export default function Button({
   variant = "primary",
   label,
   icon: Icon,
+  size = "md",
   disabled,
   className,
   ...props
@@ -50,7 +52,8 @@ export default function Button({
     <Pressable
       disabled={disabled}
       className={cn(
-        "h-10 flex-row items-center justify-center gap-2 rounded-xl px-4",
+        "flex-row items-center justify-center gap-2 rounded-xl",
+        size === "sm" ? "h-9 px-6" : "h-10 px-4",
         v.container,
         disabled && "opacity-20",
         className
@@ -60,7 +63,12 @@ export default function Button({
       {Icon ? <Icon width={18} height={18} className={v.color} /> : null}
       {label ? (
         <Text
-          className={cn("font-display-medium text-base leading-5", v.color)}
+          className={cn(
+            "font-display-medium",
+            size === "sm" ? "text-sm leading-none" : "text-base leading-5",
+            v.color
+          )}
+          style={size === "sm" ? { letterSpacing: 0.42 } : undefined}
         >
           {label}
         </Text>
