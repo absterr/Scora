@@ -6,6 +6,11 @@ import StepFlow, { type StepDef } from "@/components/StepFlow";
 import { Modal } from "@/components/ui/Modal";
 import BillingStep, { EMPTY_BILLING, type BillingDetails } from "./BillingStep";
 import CouponStep from "./CouponStep";
+import PaymentStep, {
+  CardDetails,
+  EMPTY_CARD,
+  PaymentMethod,
+} from "./PaymentStep";
 import TrialStep from "./TrialStep";
 
 type UpgradePlanFlowProps = {
@@ -25,7 +30,9 @@ export default function UpgradePlanFlow({
   const { height } = useWindowDimensions();
   const { top, bottom } = useSafeAreaInsets();
   const [coupon, setCoupon] = useState("");
+  const [method, setMethod] = useState<PaymentMethod>("card");
   const [billing, setBilling] = useState<BillingDetails>(EMPTY_BILLING);
+  const [card, setCard] = useState<CardDetails>(EMPTY_CARD);
 
   const flowHeight = Math.min(
     FLOW_HEIGHT,
@@ -62,6 +69,21 @@ export default function UpgradePlanFlow({
         <BillingStep
           values={billing}
           onChange={(key, value) => setBilling((b) => ({ ...b, [key]: value }))}
+          onBack={goBack}
+          onNext={goNext}
+        />
+      ),
+    },
+    {
+      key: "payment",
+      render: ({ goNext, goBack }) => (
+        <PaymentStep
+          method={method}
+          card={card}
+          onSelect={setMethod}
+          onCardChange={(key, value) =>
+            setCard((c) => ({ ...c, [key]: value }))
+          }
           onBack={goBack}
           onNext={goNext}
         />

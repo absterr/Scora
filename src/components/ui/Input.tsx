@@ -13,6 +13,8 @@ import { Eye, EyeOff } from "../icons/line";
 
 type InputProps = TextInputProps & {
   label: string;
+  labelClassName?: string;
+  labelSpacing?: number;
   error?: string;
   invalid?: boolean;
   isPassword?: boolean;
@@ -21,6 +23,8 @@ type InputProps = TextInputProps & {
 
 export default function Input({
   label,
+  labelClassName,
+  labelSpacing,
   error,
   invalid,
   isPassword = false,
@@ -44,8 +48,11 @@ export default function Input({
   return (
     <View className={cn("w-full gap-2", className)}>
       <Text
-        className="font-display-medium text-sm leading-none text-ink-400 dark:text-grey-100"
-        style={{ letterSpacing: 0.42 }}
+        className={cn(
+          "font-display-medium text-sm leading-none text-ink-400 dark:text-grey-100",
+          labelClassName
+        )}
+        style={{ letterSpacing: labelSpacing ?? 0.42 }}
       >
         {label}
       </Text>
