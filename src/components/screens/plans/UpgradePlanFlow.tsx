@@ -5,6 +5,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import CouponStep from "@/components/screens/plans/CouponStep";
 import StepFlow, { type StepDef } from "@/components/StepFlow";
 import { Modal } from "@/components/ui/Modal";
+import TrialStep from "./TrialStep";
 
 type UpgradePlanFlowProps = {
   visible: boolean;
@@ -39,6 +40,17 @@ export default function UpgradePlanFlow({
           onBack={finish}
           onSkip={goNext}
           onSubmit={goNext}
+        />
+      ),
+    },
+    {
+      key: "trial",
+      render: ({ goNext, goBack }) => (
+        <TrialStep
+          price={price}
+          onBack={goBack}
+          onSkip={goNext}
+          onStart={goNext}
         />
       ),
     },
