@@ -65,7 +65,7 @@ export default function Button({
         <Text
           className={cn(
             "font-display-medium",
-            size === "sm" ? "text-sm leading-none" : "text-base leading-5",
+            size === "sm" ? "text-sm leading-1" : "text-base leading-5",
             v.color
           )}
           style={size === "sm" ? { letterSpacing: 0.42 } : undefined}

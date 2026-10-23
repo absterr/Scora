@@ -4,10 +4,12 @@ import { ScrollView, View } from "react-native";
 import NotchedPanel from "@/components/NotchedPanel";
 import ComparePlans from "@/components/screens/plans/ComparePlans";
 import PlanCard from "@/components/screens/plans/PlanCard";
+import UpgradePlanFlow from "@/components/screens/plans/UpgradePlanFlow";
 import { ModalHeader } from "@/components/ui/Modal";
 import SegmentedControl, {
   type SegmentedOption,
 } from "@/components/ui/SegmentedControl";
+import { PRICING_PLANS } from "@/lib/pricing-plans";
 
 type Billing = "monthly" | "yearly";
 
@@ -16,46 +18,11 @@ const BILLING_OPTIONS: SegmentedOption<Billing>[] = [
   { label: "Yearly", value: "yearly" },
 ];
 
-const PLANS = [
-  {
-    key: "basic",
-    title: "Basic",
-    description: "Start with essential features for simple needs.",
-    price: { monthly: "$19 / month", yearly: "$182 / year" },
-    features: [
-      "Host a set number of meetings each month.",
-      "Exported content will include a watermark.",
-      "Perfect for individuals or small teams just getting started.",
-    ],
-  },
-  {
-    key: "premium",
-    title: "Premium",
-    description: "Complete tools for teams that need more flexibility.",
-    price: { monthly: "$32 / month", yearly: "$307 / year" },
-    features: [
-      "Unlimited meetings and detailed summaries to keep everyone aligned.",
-      "Multi-language support for global collaboration without barriers.",
-      "Exported content comes clean, with no watermark.",
-      "Best for growing teams that need advanced features at an affordable price.",
-    ],
-  },
-  {
-    key: "custom",
-    title: "Custom (Enterprise)",
-    description: "Tailored solutions with security and priority support.",
-    price: { monthly: "Contact us", yearly: "Contact us" },
-    features: [
-      "Single Sign-On (SSO) integration to simplify and secure team access.",
-      "Enterprise-grade compliance to meet organizational standards.",
-      "Priority support with faster response times and dedicated assistance.",
-      "Ideal for large companies or organizations with advanced needs.",
-    ],
-  },
-];
-
 export default function Plans() {
   const [billing, setBilling] = useState<Billing>("monthly");
+  const [selectedKey, setSelectedKey] = useState("basic");
+  const [open, setOpen] = useState(false);
+  const selected = PRICING_PLANS.find((p) => p.key === selectedKey);
 
   return (
     <View className="w-full flex-1 px-1 pb-1 pt-10">
@@ -81,14 +48,31 @@ export default function Plans() {
                 onValueChange={setBilling}
                 className="w-[178px] self-center"
               />
-              {PLANS.map(({ key, price, ...plan }) => (
-                <PlanCard key={key} price={price[billing]} {...plan} />
+              {PRICING_PLANS.map(({ key, price, ...plan }) => (
+                <PlanCard
+                  key={key}
+                  price={price[billing]}
+                  {...plan}
+                  onUpgrade={
+                    key === "custom"
+                      ? undefined
+                      : () => {
+                          setSelectedKey(key);
+                          setOpen(true);
+                        }
+                  }
+                />
               ))}
               <ComparePlans />
             </View>
           </ScrollView>
         </View>
       </NotchedPanel>
+      <UpgradePlanFlow
+        visible={open}
+        onClose={() => setOpen(false)}
+        price={selected?.price[billing] ?? ""}
+      />
     </View>
   );
 }

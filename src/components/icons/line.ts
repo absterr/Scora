@@ -1,5 +1,7 @@
 // -- Line Icons --
 
+export { default as Announcement } from "@/assets/icons/line/announcement.svg";
+
 export { default as Bank } from "@/assets/icons/line/bank.svg";
 export { default as Bell } from "@/assets/icons/line/bell.svg";
 export { default as BrokenLink } from "@/assets/icons/line/broken-link.svg";
@@ -31,6 +33,7 @@ export { default as Search } from "@/assets/icons/line/search.svg";
 export { default as StarsLine } from "@/assets/icons/line/stars-line.svg";
 export { default as SwitchHorizontal } from "@/assets/icons/line/switch-horizontal.svg";
 
+export { default as Unlocked } from "@/assets/icons/line/unlocked.svg";
 export { default as User } from "@/assets/icons/line/user.svg";
 
 export { default as VideoRecorderLine } from "@/assets/icons/line/video-recorder-line.svg";

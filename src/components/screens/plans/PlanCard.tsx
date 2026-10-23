@@ -3,13 +3,6 @@ import { Text, View } from "react-native";
 import { CheckCircle } from "@/components/icons/solid";
 import Button from "@/components/ui/Button";
 
-type PlanCardProps = {
-  title: string;
-  description: string;
-  price: string;
-  features: string[];
-};
-
 const TIGHT = { letterSpacing: -0.084 };
 
 export default function PlanCard({
@@ -17,7 +10,14 @@ export default function PlanCard({
   description,
   price,
   features,
-}: PlanCardProps) {
+  onUpgrade,
+}: {
+  title: string;
+  description: string;
+  price: string;
+  features: string[];
+  onUpgrade?: () => void;
+}) {
   return (
     <View
       className={`gap-4 rounded-2xl p-4 border border-brand-100
@@ -45,7 +45,12 @@ export default function PlanCard({
         {price}
       </Text>
 
-      <Button variant="accent" size="sm" label="Upgrade Plan" />
+      <Button
+        variant="accent"
+        size="sm"
+        label="Upgrade Plan"
+        onPress={onUpgrade}
+      />
 
       <View className="gap-3">
         {features.map((feature) => (
