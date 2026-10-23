@@ -1,4 +1,3 @@
-import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
@@ -35,31 +34,29 @@ export default function RootLayout() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
-        <BottomSheetModalProvider>
-          <ModalProvider>
-            <View className="flex-1 bg-snow-500 dark:bg-ink-800">
-              <Image
-                source={background}
-                resizeMode="cover"
-                style={{
-                  width: "100%",
-                  aspectRatio: 375 / 443,
-                  position: "absolute",
-                  top: 0,
-                }}
-              />
+        <ModalProvider>
+          <View className="flex-1 bg-snow-500 dark:bg-ink-800">
+            <Image
+              source={background}
+              resizeMode="cover"
+              style={{
+                width: "100%",
+                aspectRatio: 375 / 443,
+                position: "absolute",
+                top: 0,
+              }}
+            />
 
-              <Stack
-                screenOptions={{
-                  headerShown: false,
-                  contentStyle: {
-                    backgroundColor: "transparent",
-                  },
-                }}
-              />
-            </View>
-          </ModalProvider>
-        </BottomSheetModalProvider>
+            <Stack
+              screenOptions={{
+                headerShown: false,
+                contentStyle: {
+                  backgroundColor: "transparent",
+                },
+              }}
+            />
+          </View>
+        </ModalProvider>
       </SafeAreaProvider>
     </GestureHandlerRootView>
   );

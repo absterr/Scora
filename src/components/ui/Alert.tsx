@@ -7,14 +7,12 @@ import { Warning } from "../icons/solid";
 type AlertProps = {
   children: ReactNode;
   size?: "md" | "sm";
-  inline?: boolean;
   className?: string;
 };
 
 export default function Alert({
   children,
   size = "md",
-  inline = false,
   className,
 }: AlertProps) {
   return (

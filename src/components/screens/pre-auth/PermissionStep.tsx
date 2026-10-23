@@ -4,7 +4,7 @@ import type { SvgProps } from "react-native-svg";
 
 import Button from "@/components/ui/Button";
 import ToggleSwitch from "@/components/ui/ToggleSwitch";
-import NotificationRow from "./NotificationRow";
+import NotificationRow from "../NotificationRow";
 
 export type Permission = {
   key: string;
@@ -35,7 +35,10 @@ export default function PermissionStep({
 
   return (
     <View className="flex-1 gap-6 px-4 pt-10">
-      <View className="gap-8 rounded-2xl border border-brand-100 bg-white px-3 py-6 dark:border-grey-500 dark:bg-grey-600">
+      <View
+        className={`gap-8 rounded-2xl border px-3 py-6 bg-white
+        border-brand-100 dark:border-grey-500 dark:bg-grey-600`}
+      >
         <View className="items-center gap-4">
           <View
             className="size-11 items-center justify-center rounded-full bg-brand-50"
@@ -46,7 +49,10 @@ export default function PermissionStep({
 
           <View className="w-full gap-4">
             <View className="gap-1.5">
-              <Text className="text-center font-display-medium text-base leading-none text-ink-500 dark:text-snow-600">
+              <Text
+                className={`text-center font-display-medium text-base
+                 leading-none text-ink-500 dark:text-snow-600`}
+              >
                 {`${label} Permission Required`}
               </Text>
               <Text className={`text-center ${SUBTEXT}`}>

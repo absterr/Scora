@@ -39,7 +39,7 @@ const MENU_PADDING = 10;
 const MAX_MENU_HEIGHT = 250; // six rows
 const GAP = 24;
 const SCREEN_MARGIN = 8;
-const SEARCH_COLOR = { light: "#404040", dark: "#BCBCBC" }; // snow-800 (light), grey-100 (dark)
+const SEARCH_COLOR = { light: "#404040", dark: "#BCBCBC" }; // ink-400 (light), grey-100 (dark)
 const FIELD_SHADOW = { boxShadow: "0 1px 3px 1px rgba(0,0,0,0.08)" };
 const MENU_SHADOW = { boxShadow: "0 2px 4px rgba(24,24,24,0.08)" };
 

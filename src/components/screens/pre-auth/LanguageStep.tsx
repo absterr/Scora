@@ -1,6 +1,5 @@
-import { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import type { FC } from "react";
-import { Text, View } from "react-native";
+import { ScrollView, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import type { SvgProps } from "react-native-svg";
 
@@ -62,7 +61,7 @@ export default function LanguageStep({
       </View>
 
       <View className="flex-1">
-        <BottomSheetScrollView showsVerticalScrollIndicator={false}>
+        <ScrollView showsVerticalScrollIndicator={false}>
           <View className="gap-5">
             <LanguageGroup
               title="Base on your location:"
@@ -77,7 +76,7 @@ export default function LanguageStep({
               onChange={onChange}
             />
           </View>
-        </BottomSheetScrollView>
+        </ScrollView>
       </View>
 
       <View className="pt-3">

@@ -46,7 +46,10 @@ export default function NotchedPanel({
         </Svg>
       ) : null}
       <View className="absolute inset-x-0 top-3 items-center">
-        <View className="size-3.5 rounded-full border-[1.17px] border-brand-200 bg-brand-50 dark:border dark:border-snow-300/[0.11] dark:bg-snow-300/[0.04]" />
+        <View
+          className={`size-3.5 rounded-full border-[1.17px] border-brand-200 bg-brand-50
+            dark:border dark:border-snow-300/[0.11] dark:bg-snow-300/[0.04]`}
+        />
       </View>
       {children}
     </View>

@@ -5,7 +5,7 @@ import { Text, View } from "react-native";
 
 import NotchedPanel from "@/components/NotchedPanel";
 import PhonePreview from "@/components/screens/auth/PhonePreview";
-import NotificationRow from "@/components/screens/intro/NotificationRow";
+import NotificationRow from "@/components/screens/NotificationRow";
 import Button from "@/components/ui/Button";
 
 const FADE = {

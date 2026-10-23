@@ -1,4 +1,4 @@
-import { forwardRef, useState } from "react";
+import { useState } from "react";
 
 import {
   Bell,
@@ -6,15 +6,11 @@ import {
   Headset,
   storage as Storage,
 } from "@/components/icons/feature";
-import {
-  StepSheet,
-  type StepDef,
-  type StepSheetHandle,
-} from "@/components/StepSheet";
+import StepFlow, { type StepDef, type StepNav } from "@/components/StepFlow";
 import LanguageStep from "./LanguageStep";
 import PermissionStep, { type Permission } from "./PermissionStep";
 
-type OnboardingSheetProps = { onDismiss?: () => void };
+type OnboardingStepsProps = { onFinish: () => void };
 
 const PERMISSIONS: Permission[] = [
   {
@@ -47,10 +43,7 @@ const PERMISSIONS: Permission[] = [
   },
 ];
 
-export const OnboardingSheet = forwardRef<
-  StepSheetHandle,
-  OnboardingSheetProps
->(({ onDismiss }, ref) => {
+export default function OnboardingSteps({ onFinish }: OnboardingStepsProps) {
   const [language, setLanguage] = useState<string | null>(null);
 
   const steps: StepDef[] = [
@@ -66,26 +59,15 @@ export const OnboardingSheet = forwardRef<
     },
     ...PERMISSIONS.map((permission, i) => ({
       key: permission.key,
-      render: ({ goNext, dismiss }: Parameters<StepDef["render"]>[0]) => (
+      render: ({ goNext, finish }: StepNav) => (
         <PermissionStep
           permission={permission}
           onSetup={() => {}}
-          onSkip={i === PERMISSIONS.length - 1 ? dismiss : goNext}
+          onSkip={i === PERMISSIONS.length - 1 ? finish : goNext}
         />
       ),
     })),
   ];
 
-  return (
-    <StepSheet
-      ref={ref}
-      steps={steps}
-      onDismiss={() => {
-        setLanguage(null);
-        onDismiss?.();
-      }}
-    />
-  );
-});
-
-OnboardingSheet.displayName = "OnboardingSheet";
+  return <StepFlow steps={steps} onFinish={onFinish} />;
+}
