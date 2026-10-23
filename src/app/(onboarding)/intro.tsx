@@ -3,7 +3,6 @@ import { Text, View } from "react-native";
 import Animated, { FadeInDown, FadeOutUp } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import Logo from "@/components/Logo";
 import AIBubble from "@/components/AIBubble";
 import DocExportCard from "@/components/screens/intro/DocExportCard";
 import FormatList from "@/components/screens/intro/FormatList";
@@ -39,12 +38,9 @@ export default function Intro() {
       <View
         className="flex-1 items-center px-6"
         style={{
-          paddingTop: insets.top + 40,
           paddingBottom: insets.bottom + 18,
         }}
       >
-        <Logo />
-
         {!sheetOpen && (
           <>
             <View className="w-full flex-1">

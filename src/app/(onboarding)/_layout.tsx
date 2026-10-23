@@ -4,7 +4,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import Logo from "@/components/Logo";
 
-export default function AuthLayout() {
+export default function OnboardingLayout() {
   const insets = useSafeAreaInsets();
   const top = insets.top + 40;
 
