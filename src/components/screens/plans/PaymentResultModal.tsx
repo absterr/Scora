@@ -2,8 +2,10 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useEffect } from "react";
 import { Text, View } from "react-native";
 import Animated, {
+  Easing,
   useAnimatedStyle,
   useSharedValue,
+  withDelay,
   withTiming,
 } from "react-native-reanimated";
 
@@ -27,25 +29,25 @@ const CONTENT = {
   success: {
     title: "Payment Successful",
     description: "Your transaction has been completed securely.",
-    ring: "bg-[rgba(70,73,255,0.22)]",
     colors: ["#32B6FF", "#6939EE"],
     start: { x: 0.2, y: 0 },
     end: { x: 0.8, y: 1 },
     Icon: CheckCircle,
     primary: "Get Started",
     secondary: "Download Invoice",
+    pulse: "bg-[rgba(70,73,255,0.35)]",
   },
   failed: {
     title: "Payment Failed",
     description:
       "We couldn’t process your payment. Please try again or use a different method.",
-    ring: "bg-[rgba(243,105,96,0.2)]",
     colors: ["#E13065", "#FFB5CB"],
     start: { x: 0, y: 0 },
     end: { x: 0, y: 1 },
     Icon: XCircle,
     primary: "Change Payment Method",
     secondary: "Dismiss",
+    pulse: "bg-[rgba(243,105,96,0.35)]",
   },
 } as const;
 
@@ -63,29 +65,22 @@ export default function PaymentResultModal({
   return (
     <Modal visible={visible} onClose={onClose} handle className="pt-10">
       <ModalHeader title={c.title} description={c.description}>
-        <View className="size-[115px] items-center justify-center rounded-full">
-          <View
-            className={cn(
-              "size-[115px] items-center justify-center rounded-full",
-              c.ring
-            )}
+        <View className="-my-5 size-[155px] items-center justify-center">
+          <Pulse className={c.pulse} />
+          <LinearGradient
+            colors={c.colors}
+            start={c.start}
+            end={c.end}
+            style={{
+              width: 75,
+              height: 75,
+              borderRadius: 38,
+              alignItems: "center",
+              justifyContent: "center",
+            }}
           >
-            <Pulse className={c.ring} />
-            <LinearGradient
-              colors={c.colors}
-              start={c.start}
-              end={c.end}
-              style={{
-                width: 75,
-                height: 75,
-                borderRadius: 38,
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <c.Icon width={40} height={40} className="text-brand-50" />
-            </LinearGradient>
-          </View>
+            <c.Icon width={40} height={40} className="text-brand-50" />
+          </LinearGradient>
         </View>
       </ModalHeader>
 
@@ -135,18 +130,23 @@ const Pulse = ({ className }: { className: string }) => {
   const progress = useSharedValue(0);
 
   useEffect(() => {
-    progress.set(withTiming(1, { duration: 900 }));
+    progress.set(
+      withDelay(
+        300,
+        withTiming(1, { duration: 1100, easing: Easing.out(Easing.quad) })
+      )
+    );
   }, [progress]);
 
   const style = useAnimatedStyle(() => ({
-    opacity: 1 - progress.get(),
-    transform: [{ scale: 1 + 0.5 * progress.get() }],
+    opacity: progress.get() === 0 ? 0 : 0.9 * (1 - progress.get()),
+    transform: [{ scale: 1 + 0.3 * progress.get() }],
   }));
 
   return (
     <Animated.View
       pointerEvents="none"
-      className={cn("absolute size-[75px] rounded-full", className)}
+      className={cn("absolute size-full rounded-full", className)}
       style={style}
     />
   );
