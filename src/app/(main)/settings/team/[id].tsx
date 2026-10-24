@@ -17,6 +17,7 @@ import ScreenHeader from "@/components/screens/settings/ScreenHeader";
 import TeamCard from "@/components/screens/settings/TeamCard";
 import { AVATARS } from "@/lib/avatars";
 import { TEAMS, type Member } from "@/lib/mock-teams";
+import ManageMemberModal from "@/components/screens/settings/ManageMemberModal";
 
 const TIGHT = { letterSpacing: -0.084 };
 const FIELD_SHADOW = { boxShadow: "0 1px 3px 1px rgba(0,0,0,0.08)" };
@@ -31,6 +32,7 @@ export default function TeamDetails() {
   const { top } = useSafeAreaInsets();
   const { colorScheme } = useColorScheme();
   const [query, setQuery] = useState("");
+  const [selected, setSelected] = useState<Member | null>(null);
 
   const team = TEAMS.find((t) => t.id === id);
   if (!team) return null;
@@ -92,7 +94,7 @@ export default function TeamDetails() {
           >
             Admin
           </Text>
-          <MemberRow member={team.admin} />
+          <MemberRow member={team.admin} onManage={setSelected} />
         </View>
 
         <View className="gap-3">
@@ -114,16 +116,27 @@ export default function TeamDetails() {
           </View>
           <View className="gap-2">
             {members.map((member) => (
-              <MemberRow key={member.email} member={member} />
+              <MemberRow
+                key={member.email}
+                member={member}
+                onManage={setSelected}
+              />
             ))}
           </View>
         </View>
       </View>
+      <ManageMemberModal member={selected} onClose={() => setSelected(null)} />
     </ScrollView>
   );
 }
 
-const MemberRow = ({ member }: { member: Member }) => (
+const MemberRow = ({
+  member,
+  onManage,
+}: {
+  member: Member;
+  onManage: (member: Member) => void;
+}) => (
   <View className="flex-row items-center gap-3 py-1">
     <Image source={AVATARS[member.avatar]} className="size-10 rounded-full" />
     <View className="flex-1">
@@ -145,6 +158,7 @@ const MemberRow = ({ member }: { member: Member }) => (
       hitSlop={9}
       accessibilityRole="button"
       accessibilityLabel={`Actions for ${member.name}`}
+      onPress={() => onManage(member)}
       className={`size-[26px] items-center justify-center ${ACTION}`}
     >
       <DotsHorizontal

@@ -1,4 +1,4 @@
-import { useRouter } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import { useRef, useState } from "react";
 import { Image, Pressable, ScrollView, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -174,9 +174,11 @@ export default function Meetings() {
             >
               <Text className={`font-display-regular text-xs ${MUTED}`}>
                 No list yet.{" "}
-                <Text className="text-brand-400 underline dark:text-brand-200">
-                  Create a new meeting
-                </Text>
+                <Link href={"/schedule"}>
+                  <Text className="font-display-regular text-xs text-brand-400 underline dark:text-brand-200">
+                    Create a new meeting
+                  </Text>
+                </Link>
               </Text>
             </View>
           </View>
