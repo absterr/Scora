@@ -33,6 +33,8 @@ export { default as Search } from "@/assets/icons/line/search.svg";
 export { default as StarsLine } from "@/assets/icons/line/stars-line.svg";
 export { default as SwitchHorizontal } from "@/assets/icons/line/switch-horizontal.svg";
 
+export { default as Trash } from "@/assets/icons/line/trash.svg";
+
 export { default as Unlocked } from "@/assets/icons/line/unlocked.svg";
 export { default as User } from "@/assets/icons/line/user.svg";
 

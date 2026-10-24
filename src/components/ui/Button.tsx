@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 type IconComponent = FC<SvgProps>;
 
 type BaseProps = Omit<PressableProps, "children"> & {
-  variant?: "primary" | "secondary" | "ghost" | "accent";
+  variant?: "primary" | "secondary" | "ghost" | "accent" | "danger";
   size?: "md" | "sm";
   className?: string;
 };
@@ -34,6 +34,11 @@ const variants = {
     container:
       "bg-brand-400 border border-brand-300 dark:bg-snow-500 dark:border-grey-500",
     color: "text-white dark:text-ink-500",
+  },
+  danger: {
+    container:
+      "bg-[rgba(205,207,229,0.22)] dark:bg-grey-700 border border-error-500",
+    color: "text-error-500",
   },
 };
 
