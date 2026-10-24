@@ -18,14 +18,7 @@ export type StepDef = {
   render: (nav: StepNav) => ReactNode;
 };
 
-type StepFlowProps = {
-  steps: StepDef[];
-  onFinish: () => void;
-};
-
 type Step = { index: number; direction: 1 | -1 };
-
-const INITIAL: Step = { index: 0, direction: 1 };
 
 const ENTER_FORWARD = FadeInRight.duration(300);
 const ENTER_BACK = FadeInLeft.duration(300);
@@ -37,8 +30,19 @@ const move = (delta: 1 | -1, last: number) => (step: Step) => ({
   direction: delta,
 });
 
-export default function StepFlow({ steps, onFinish }: StepFlowProps) {
-  const [{ index, direction }, setStep] = useState(INITIAL);
+export default function StepFlow({
+  steps,
+  initialIndex = 0,
+  onFinish,
+}: {
+  steps: StepDef[];
+  initialIndex?: number;
+  onFinish: () => void;
+}) {
+  const [{ index, direction }, setStep] = useState<Step>({
+    index: initialIndex,
+    direction: 1,
+  });
   const last = steps.length - 1;
 
   // On the first step the handler is not registered, so the router handles back.

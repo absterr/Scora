@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useRouter } from "expo-router";
+import { useEffect, useRef, useState } from "react";
 import { useWindowDimensions, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -7,6 +8,9 @@ import BillingStep, {
   type BillingDetails,
 } from "@/components/screens/plans/BillingStep";
 import CouponStep from "@/components/screens/plans/CouponStep";
+import PaymentResultModal, {
+  type PaymentResult,
+} from "@/components/screens/plans/PaymentResultModal";
 import PaymentStep, {
   EMPTY_CARD,
   type CardDetails,
@@ -20,12 +24,15 @@ import { Modal } from "@/components/ui/Modal";
 type UpgradePlanFlowProps = {
   visible: boolean;
   onClose: () => void;
+  onReopen: () => void;
   planTitle: string;
   price: string;
 };
 
 const FLOW_HEIGHT = 648;
 const MODAL_CHROME = 71 + 32;
+const PAYMENT_STEP = 3;
+const PAY_DELAY = 1500;
 
 const mockBillingId = () =>
   `BIL-${Math.random().toString(36).slice(2, 10).toUpperCase()}`;
@@ -33,22 +40,52 @@ const mockBillingId = () =>
 export default function UpgradePlanFlow({
   visible,
   onClose,
+  onReopen,
   planTitle,
   price,
 }: UpgradePlanFlowProps) {
+  const router = useRouter();
   const { height } = useWindowDimensions();
   const { top, bottom } = useSafeAreaInsets();
   const [coupon, setCoupon] = useState("");
   const [billing, setBilling] = useState<BillingDetails>(EMPTY_BILLING);
-  const [billingId] = useState(mockBillingId);
   const [method, setMethod] = useState<PaymentMethod>("card");
   const [card, setCard] = useState<CardDetails>(EMPTY_CARD);
-  const [autoRenew, setAutoRenew] = useState(true);
+  const [autoRenew, setAutoRenew] = useState(false);
+  const [billingId] = useState(mockBillingId);
+  const [startIndex, setStartIndex] = useState(0);
+  const [paying, setPaying] = useState(false);
+  const [result, setResult] = useState<PaymentResult>("success");
+  const [resultVisible, setResultVisible] = useState(false);
+  const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+
+  useEffect(() => () => clearTimeout(timer.current), []);
 
   const flowHeight = Math.min(
     FLOW_HEIGHT,
     height - top - bottom - MODAL_CHROME
   );
+
+  const close = () => {
+    setStartIndex(0);
+    onClose();
+  };
+
+  // Simulated network call: PayPal or a card ending in 0000 fails
+  const pay = () => {
+    setPaying(true);
+    timer.current = setTimeout(() => {
+      const failed =
+        method === "paypal" ||
+        (method === "card" && card.number.endsWith("0000"));
+      setPaying(false);
+      setResult(failed ? "failed" : "success");
+      setResultVisible(true);
+      close();
+    }, PAY_DELAY);
+  };
+
+  const dismissResult = () => setResultVisible(false);
 
   const steps: StepDef[] = [
     {
@@ -102,7 +139,7 @@ export default function UpgradePlanFlow({
     },
     {
       key: "review",
-      render: ({ goNext, goBack }) => (
+      render: ({ goBack }) => (
         <ReviewStep
           name={billing.username}
           billingId={billingId}
@@ -110,18 +147,37 @@ export default function UpgradePlanFlow({
           price={price}
           autoRenew={autoRenew}
           onAutoRenewChange={setAutoRenew}
+          loading={paying}
           onBack={goBack}
-          onConfirm={goNext}
+          onConfirm={pay}
         />
       ),
     },
   ];
 
   return (
-    <Modal visible={visible} onClose={onClose} handle>
-      <View style={{ height: flowHeight }}>
-        <StepFlow steps={steps} onFinish={onClose} />
-      </View>
-    </Modal>
+    <>
+      <Modal visible={visible} onClose={close} handle>
+        <View style={{ height: flowHeight }}>
+          <StepFlow steps={steps} onFinish={close} initialIndex={startIndex} />
+        </View>
+      </Modal>
+
+      <PaymentResultModal
+        visible={resultVisible}
+        status={result}
+        onClose={dismissResult}
+        onPrimary={() => {
+          dismissResult();
+          if (result === "success") {
+            router.push("/meeting");
+          } else {
+            setStartIndex(PAYMENT_STEP);
+            onReopen();
+          }
+        }}
+        onSecondary={result === "failed" ? dismissResult : undefined}
+      />
+    </>
   );
 }

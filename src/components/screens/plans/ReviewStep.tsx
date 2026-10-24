@@ -13,6 +13,7 @@ type ReviewStepProps = {
   planTitle: string;
   price: string;
   autoRenew: boolean;
+  loading?: boolean;
   onAutoRenewChange: (value: boolean) => void;
   onBack: () => void;
   onConfirm: () => void;
@@ -36,6 +37,7 @@ export default function ReviewStep({
   planTitle,
   price,
   autoRenew,
+  loading,
   onAutoRenewChange,
   onBack,
   onConfirm,
@@ -117,7 +119,11 @@ export default function ReviewStep({
           the Terms and Conditions.
         </Alert>
       </ScrollView>
-      <Button label="Pay Now" onPress={onConfirm} />
+      <Button
+        label={loading ? "Processing..." : "Pay Now"}
+        disabled={loading}
+        onPress={onConfirm}
+      />
     </View>
   );
 }
