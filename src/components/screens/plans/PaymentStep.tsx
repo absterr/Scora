@@ -5,9 +5,11 @@ import Svg, { Path, type SvgProps } from "react-native-svg";
 import { Bank, Plus } from "@/components/icons/line";
 import { LemonSqueezy, MasterCard, Paypal } from "@/components/icons/payment";
 import Button from "@/components/ui/Button";
+import Expandable from "@/components/ui/Expandable";
 import Input from "@/components/ui/Input";
 import { ModalHeader, ModalTopbar } from "@/components/ui/Modal";
 import { cn } from "@/lib/utils";
+import { validExpiry } from "@/lib/validation";
 
 export type PaymentMethod = "card" | "lemonsqueezy" | "paypal" | "bank";
 export type CardDetails = { number: string; expiry: string; cvv: string };
@@ -58,8 +60,9 @@ export default function PaymentStep({
 }: PaymentStepProps) {
   const cardComplete =
     card.number.length >= 13 &&
-    card.expiry.length === 5 &&
+    validExpiry(card.expiry) &&
     card.cvv.length >= 3;
+
   const canContinue = method !== "card" || cardComplete;
 
   return (
@@ -85,7 +88,7 @@ export default function PaymentStep({
             {METHODS.map(({ key, label, Icon }) => {
               const selected = method === key;
               return (
-                <View key={key} className={cn("gap-4", ROW, DIVIDER)}>
+                <View key={key} className={cn(ROW, DIVIDER)}>
                   <Pressable
                     onPress={() => onSelect(key)}
                     hitSlop={12}
@@ -104,55 +107,63 @@ export default function PaymentStep({
                     <Radio selected={selected} />
                   </Pressable>
 
-                  {key === "card" && selected ? (
-                    <View className="gap-4">
-                      <Input
-                        label="Card Number"
-                        placeholder="1234 5678 9012 3456"
-                        value={groupDigits(card.number)}
-                        onChangeText={(t) =>
-                          onCardChange(
-                            "number",
-                            t.replace(/\D/g, "").slice(0, 19)
-                          )
-                        }
-                        keyboardType="number-pad"
-                        autoComplete="cc-number"
-                        labelClassName={LABEL}
-                        labelSpacing={-0.084}
-                      />
-                      <View className="flex-row gap-4">
+                  {key === "card" ? (
+                    <Expandable open={selected}>
+                      <View className="gap-4 pt-4">
                         <Input
-                          label="Expiry Date"
-                          placeholder="MM/YY"
-                          value={card.expiry}
-                          onChangeText={(t) =>
-                            onCardChange("expiry", formatExpiry(t))
-                          }
-                          keyboardType="number-pad"
-                          autoComplete="cc-exp"
-                          labelClassName={LABEL}
-                          labelSpacing={-0.084}
-                          className="flex-1"
-                        />
-                        <Input
-                          label="CVV"
-                          placeholder="123"
-                          value={card.cvv}
+                          label="Card Number"
+                          placeholder="1234 5678 9012 3456"
+                          value={groupDigits(card.number)}
                           onChangeText={(t) =>
                             onCardChange(
-                              "cvv",
-                              t.replace(/\D/g, "").slice(0, 4)
+                              "number",
+                              t.replace(/\D/g, "").slice(0, 19)
                             )
                           }
                           keyboardType="number-pad"
-                          autoComplete="cc-csc"
+                          autoComplete="cc-number"
                           labelClassName={LABEL}
                           labelSpacing={-0.084}
-                          className="flex-1"
                         />
+                        <View className="flex-row gap-4">
+                          <Input
+                            label="Expiry Date"
+                            placeholder="MM/YY"
+                            value={card.expiry}
+                            onChangeText={(t) =>
+                              onCardChange("expiry", formatExpiry(t))
+                            }
+                            error={
+                              card.expiry.length === 5 &&
+                              !validExpiry(card.expiry)
+                                ? "Enter a valid date"
+                                : undefined
+                            }
+                            keyboardType="number-pad"
+                            autoComplete="cc-exp"
+                            labelClassName={LABEL}
+                            labelSpacing={-0.084}
+                            className="flex-1"
+                          />
+                          <Input
+                            label="CVV"
+                            placeholder="123"
+                            value={card.cvv}
+                            onChangeText={(t) =>
+                              onCardChange(
+                                "cvv",
+                                t.replace(/\D/g, "").slice(0, 4)
+                              )
+                            }
+                            keyboardType="number-pad"
+                            autoComplete="cc-csc"
+                            labelClassName={LABEL}
+                            labelSpacing={-0.084}
+                            className="flex-1"
+                          />
+                        </View>
                       </View>
-                    </View>
+                    </Expandable>
                   ) : null}
                 </View>
               );

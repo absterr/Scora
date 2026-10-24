@@ -20,3 +20,15 @@ export const getPasswordStrength = (password: string): PasswordStrength => {
   if (failed.length === 0) return "strong";
   return failed.length === 1 && failed[0] === "upper" ? "almost" : "weak";
 };
+
+export const validExpiry = (value: string) => {
+  if (value.length !== 5) return false;
+  const month = Number(value.slice(0, 2));
+  const year = 2000 + Number(value.slice(3));
+  const now = new Date();
+  if (month < 1 || month > 12) return false;
+  return (
+    year > now.getFullYear() ||
+    (year === now.getFullYear() && month >= now.getMonth() + 1)
+  );
+};
