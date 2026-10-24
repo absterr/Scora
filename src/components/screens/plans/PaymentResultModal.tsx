@@ -63,24 +63,26 @@ export default function PaymentResultModal({
   const c = CONTENT[status];
 
   return (
-    <Modal visible={visible} onClose={onClose} handle className="pt-10">
+    <Modal visible={visible} onClose={onClose} handle position="bottom">
       <ModalHeader title={c.title} description={c.description}>
-        <View className="-my-5 size-[155px] items-center justify-center">
-          <Pulse className={c.pulse} />
-          <LinearGradient
-            colors={c.colors}
-            start={c.start}
-            end={c.end}
-            style={{
-              width: 75,
-              height: 75,
-              borderRadius: 38,
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <c.Icon width={40} height={40} className="text-brand-50" />
-          </LinearGradient>
+        <View className="pt-10">
+          <View className="size-[155px] items-center justify-center">
+            <Pulse className={c.pulse} />
+            <LinearGradient
+              colors={c.colors}
+              start={c.start}
+              end={c.end}
+              style={{
+                width: 75,
+                height: 75,
+                borderRadius: 38,
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <c.Icon width={40} height={40} className="text-brand-50" />
+            </LinearGradient>
+          </View>
         </View>
       </ModalHeader>
 

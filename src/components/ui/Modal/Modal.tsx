@@ -22,6 +22,7 @@ type ModalProps = {
   children: ReactNode;
   topBar?: ReactNode;
   handle?: boolean;
+  position?: "center" | "bottom";
   className?: string;
 };
 
@@ -31,6 +32,7 @@ export default function Modal({
   children,
   topBar,
   handle,
+  position = "center",
   className,
 }: ModalProps) {
   const id = useId();
@@ -47,7 +49,10 @@ export default function Modal({
     >
       <KeyboardAvoidingView
         behavior="padding"
-        className="flex-1 justify-center px-3"
+        className={cn(
+          "flex-1 px-3",
+          position === "bottom" ? "justify-end" : "justify-center"
+        )}
       >
         <BlurView
           blurTarget={targetRef}
@@ -69,10 +74,14 @@ export default function Modal({
         />
         <View
           className={cn(
-            "px-3 pb-4 pt-6 gap-6 rounded-2xl border border-brand-100 bg-snow-500 dark:border-grey-500 dark:bg-grey-800",
+            "px-3 pb-4 pt-6 gap-6 rounded-2xl border border-brand-100 bg-snow-500",
+            "dark:border-grey-500 dark:bg-grey-800",
             className
           )}
-          style={{ maxHeight: height - top - bottom - 32 }}
+          style={{
+            maxHeight: height - top - bottom - 32,
+            marginBottom: position === "bottom" ? Math.max(bottom, 16) + 16 : 0,
+          }}
         >
           {topBar}
           <ScrollView
