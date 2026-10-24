@@ -43,7 +43,7 @@ export default function JoinWithLink() {
           accessibilityLabel="Meeting link"
           onSubmitEditing={() => {
             if (link.trim())
-              router.push({ pathname: "/meeting", params: { role: "guest" } });
+              router.push({ pathname: "/room", params: { role: "guest" } });
           }}
           className="p-0 font-display-regular text-xs text-ink-500 dark:text-snow-600"
         />

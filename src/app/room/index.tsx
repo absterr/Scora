@@ -25,6 +25,14 @@ const MOCK_GUESTS: Guest[] = [
   { id: "axel", name: "Axel Brooks", avatar: AVATARS.axel },
 ];
 
+const MOCK_HOST: Participant = {
+  id: "host",
+  name: "Clara Burg",
+  avatar: AVATARS.cleo,
+  host: true,
+  micOn: true,
+};
+
 export default function Room() {
   const router = useRouter();
   const { role, name } = useLocalSearchParams<{
@@ -55,16 +63,18 @@ export default function Room() {
     []
   );
 
-  const participants: Participant[] = [
-    {
-      id: "host",
-      name: "Mark Burghschent",
-      avatar: AVATARS.enzo,
-      host: true,
-      micOn,
-    },
-    ...guests,
-  ];
+  const me: Participant = {
+    id: "me",
+    name: "Mark Burghschent",
+    avatar: AVATARS.enzo,
+    host: isHost,
+    micOn,
+  };
+
+  const participants: Participant[] = isHost
+    ? [me, ...guests]
+    : [MOCK_HOST, me];
+
   const crowded = participants.length > 2;
 
   useEffect(() => {
