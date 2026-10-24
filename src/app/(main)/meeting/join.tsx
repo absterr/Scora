@@ -1,9 +1,11 @@
+import { useRouter } from "expo-router";
 import { useColorScheme } from "nativewind";
 import { useState } from "react";
 import { ScrollView, Text, TextInput, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function JoinWithLink() {
+  const router = useRouter();
   const { top } = useSafeAreaInsets();
   const { colorScheme } = useColorScheme();
   const [link, setLink] = useState("");
@@ -39,6 +41,10 @@ export default function JoinWithLink() {
           autoCorrect={false}
           returnKeyType="go"
           accessibilityLabel="Meeting link"
+          onSubmitEditing={() => {
+            if (link.trim())
+              router.push({ pathname: "/meeting", params: { role: "guest" } });
+          }}
           className="p-0 font-display-regular text-xs text-ink-500 dark:text-snow-600"
         />
       </View>

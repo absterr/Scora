@@ -15,6 +15,7 @@ import {
   type Meeting,
   type Status,
 } from "@/lib/meetings";
+import { useRouter } from "expo-router";
 
 const MUTED = "text-ink-400 dark:text-grey-100";
 
@@ -48,6 +49,7 @@ const NewMeetingBar = ({
 
 export default function Schedule() {
   const { top } = useSafeAreaInsets();
+  const router = useRouter();
   const [meetings, setMeetings] = useState<Meeting[]>([]);
   const [open, setOpen] = useState(false);
   const [tab, setTab] = useState<Status>("upcoming");
@@ -96,7 +98,18 @@ export default function Schedule() {
               <WeekCalendar selected={selected} onSelect={setSelected} />
               <View className="gap-4">
                 {visible.length ? (
-                  visible.map((m) => <MeetingCard key={m.id} meeting={m} />)
+                  visible.map((m) => (
+                    <MeetingCard
+                      key={m.id}
+                      meeting={m}
+                      onJoin={() =>
+                        router.push({
+                          pathname: "/room",
+                          params: { role: "host", name: m.name },
+                        })
+                      }
+                    />
+                  ))
                 ) : (
                   <Text
                     className={`text-center font-display-regular text-sm ${MUTED}`}
