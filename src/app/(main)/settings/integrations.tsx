@@ -5,6 +5,7 @@ import type { SvgProps } from "react-native-svg";
 
 import { Logout } from "@/components/icons/line";
 import { GoogleDrive, Notion, OneDrive, Slack } from "@/components/icons/tools";
+import ConnectIntegrationModal from "@/components/screens/settings/ConnectIntegrationModal";
 import ScreenHeader from "@/components/screens/settings/ScreenHeader";
 import Collapsible from "@/components/ui/Collapsible";
 import ToggleSwitch from "@/components/ui/ToggleSwitch";
@@ -35,38 +36,6 @@ const SOFT_FILL = "border-[rgba(205,207,229,0.22)] bg-[rgba(205,207,229,0.22)]";
 const ROW_DIVIDER =
   "border-t border-[rgba(205,207,229,0.22)] dark:border-grey-500";
 
-const ConnectButton = ({
-  connected,
-  onPress,
-}: {
-  connected: boolean;
-  onPress: () => void;
-}) => (
-  <Pressable
-    onPress={onPress}
-    hitSlop={8}
-    accessibilityRole="button"
-    className={cn(
-      "h-7 items-center justify-center rounded-lg border px-3",
-      connected
-        ? "border-brand-300 bg-brand-400"
-        : `${SOFT_FILL} dark:border-snow-300/[0.04] dark:bg-snow-300/[0.04]`
-    )}
-  >
-    <Text
-      className={cn(
-        "font-display-medium text-xs",
-        connected
-          ? "text-white dark:text-snow-600"
-          : "text-ink-500 dark:text-snow-600"
-      )}
-      style={{ letterSpacing: 0.24 }}
-    >
-      {connected ? "Connected" : "Connect"}
-    </Text>
-  </Pressable>
-);
-
 export default function Integrations() {
   const { top } = useSafeAreaInsets();
   const [connected, setConnected] = useState<Record<string, boolean>>({
@@ -74,6 +43,14 @@ export default function Integrations() {
     onedrive: true,
   });
   const [autoSync, setAutoSync] = useState(true);
+  const [pending, setPending] = useState<Integration | null>(null);
+
+  const modalIntegration = pending
+    ? {
+        name: pending.name,
+        icon: <pending.Icon width={pending.width} height={pending.height} />,
+      }
+    : null;
 
   const set = (id: string, value: boolean) =>
     setConnected((prev) => ({ ...prev, [id]: value }));
@@ -108,7 +85,7 @@ export default function Integrations() {
               </Text>
               <ConnectButton
                 connected={!!connected[id]}
-                onPress={() => set(id, true)}
+                onPress={() => setPending(INTEGRATIONS[i])}
               />
               {connected[id] ? (
                 <Pressable
@@ -147,6 +124,46 @@ export default function Integrations() {
           </View>
         </Collapsible>
       </View>
+
+      <ConnectIntegrationModal
+        integration={modalIntegration}
+        onClose={() => setPending(null)}
+        onConnect={() => {
+          if (pending) set(pending.id, true);
+          setPending(null);
+        }}
+      />
     </ScrollView>
   );
 }
+
+const ConnectButton = ({
+  connected,
+  onPress,
+}: {
+  connected: boolean;
+  onPress: () => void;
+}) => (
+  <Pressable
+    onPress={onPress}
+    disabled={connected}
+    hitSlop={8}
+    accessibilityRole="button"
+    className={cn(
+      "h-7 items-center justify-center rounded-lg border px-3",
+      connected
+        ? `${SOFT_FILL} dark:border-snow-300/[0.04] dark:bg-snow-300/[0.04]`
+        : "border-brand-300 bg-brand-400"
+    )}
+  >
+    <Text
+      className={cn(
+        "font-display-medium text-xs",
+        connected ? "text-ink-500 dark:text-snow-600" : "text-white"
+      )}
+      style={{ letterSpacing: 0.24 }}
+    >
+      {connected ? "Connected" : "Connect"}
+    </Text>
+  </Pressable>
+);
