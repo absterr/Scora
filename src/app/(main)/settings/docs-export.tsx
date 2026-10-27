@@ -1,13 +1,12 @@
 import { useState } from "react";
-import { Pressable, ScrollView, Text, View } from "react-native";
+import { ScrollView, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import Svg, { Path } from "react-native-svg";
 
 import ScreenHeader from "@/components/screens/settings/ScreenHeader";
+import Checkbox from "@/components/ui/Checkbox";
 import Collapsible from "@/components/ui/Collapsible";
 import Input from "@/components/ui/Input";
 import Selectable from "@/components/ui/Selectable";
-import { cn } from "@/lib/utils";
 
 const FORMATS = ["Word (.docx)", "PDF", "HTML"];
 
@@ -45,11 +44,12 @@ export default function DocsExport() {
         >
           <View className="gap-2">
             {FORMATS.map((name) => (
-              <FormatOption
+              <Checkbox
                 key={name}
                 label={name}
-                selected={format === name}
-                onPress={() => setFormat(name)}
+                checked={format === name}
+                onChange={() => setFormat(name)}
+                shape="circle"
               />
             ))}
           </View>
@@ -82,47 +82,3 @@ export default function DocsExport() {
     </ScrollView>
   );
 }
-
-const FormatOption = ({
-  label,
-  selected,
-  onPress,
-}: {
-  label: string;
-  selected: boolean;
-  onPress: () => void;
-}) => (
-  <Pressable
-    onPress={onPress}
-    hitSlop={8}
-    accessibilityRole="radio"
-    accessibilityState={{ checked: selected }}
-    className="flex-row items-center gap-2"
-  >
-    <View
-      className={cn(
-        "size-3.5 items-center justify-center rounded-full border",
-        selected ? "border-brand-400 bg-brand-400" : UNCHECKED
-      )}
-    >
-      {selected ? (
-        <Svg width={14} height={14} viewBox="0 0 14 14">
-          <Path
-            d="M3.5 7.2 5.8 9.4 10.5 4.6"
-            stroke="#FFFFFF"
-            strokeWidth={1.458}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            fill="none"
-          />
-        </Svg>
-      ) : null}
-    </View>
-    <Text
-      className="font-display-regular text-sm leading-5 text-ink-400 dark:text-grey-100"
-      style={{ letterSpacing: -0.084 }}
-    >
-      {label}
-    </Text>
-  </Pressable>
-);

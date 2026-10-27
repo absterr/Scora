@@ -3,6 +3,7 @@ import { type ReactNode } from "react";
 import { Pressable, Text, View } from "react-native";
 
 import { cn } from "@/lib/utils";
+import { Check } from "../icons/line";
 
 type RadioButtonProps = {
   label: string;
@@ -100,9 +101,7 @@ export default function RadioButton({
           className="h-[14px] w-[14px] items-center justify-center rounded-[7px] border"
           style={indicatorStyle}
         >
-          {selected && (
-            <Text className="text-[10px] leading-[12px] text-white">✓</Text>
-          )}
+          {selected && <Check className="text-white" width={10} height={10} />}
         </View>
       </View>
     </Pressable>

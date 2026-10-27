@@ -47,6 +47,7 @@ export default function AISummaries() {
                 label={name}
                 checked={templates.includes(name)}
                 onChange={(checked) => toggle(name, checked)}
+                variant="outline"
               />
             ))}
           </View>
