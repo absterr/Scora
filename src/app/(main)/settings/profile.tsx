@@ -2,8 +2,8 @@ import { Pressable, ScrollView, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { ChevronRight } from "@/components/icons/line";
-import AvatarPickerModal from "@/components/screens/AvatarPickerModal";
-import ProfileAvatar from "@/components/screens/settings/ProfileAvatar";
+import AvatarPickerModal from "@/components/screens/profile/AvatarPickerModal";
+import ProfileAvatar from "@/components/screens/profile/ProfileAvatar";
 import ScreenHeader from "@/components/screens/settings/ScreenHeader";
 import { AvatarName, AVATARS } from "@/lib/avatars";
 import { cn } from "@/lib/utils";

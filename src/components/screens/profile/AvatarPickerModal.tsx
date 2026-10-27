@@ -1,10 +1,10 @@
 import { Text, View } from "react-native";
 
-import ProfileAvatar from "@/components/screens/settings/ProfileAvatar";
 import Button from "@/components/ui/Button";
 import { Modal, ModalTopbar } from "@/components/ui/Modal";
 import { AVATARS, type AvatarName } from "@/lib/avatars";
-import AvatarGrid from "./settings/AvatarGrid";
+import AvatarGrid from "./AvatarGrid";
+import ProfileAvatar from "./ProfileAvatar";
 
 type AvatarPickerModalProps = {
   visible: boolean;

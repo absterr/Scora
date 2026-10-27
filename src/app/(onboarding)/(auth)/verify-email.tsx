@@ -61,7 +61,7 @@ export default function VerifyEmail() {
           label="Continue"
           className="h-[42px]"
           disabled={code.length < CODE_LENGTH}
-          onPress={() => {}}
+          onPress={() => router.replace("/setup")}
         />
         <AuthSwitch
           prompt="Already have an account?"
