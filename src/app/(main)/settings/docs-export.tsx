@@ -17,13 +17,16 @@ const LOCATIONS = [
   { label: "OneDrive", value: "onedrive" },
 ];
 
-const UNCHECKED =
-  "border-brand-100 bg-[#E7E7E7] dark:border-snow-300/[0.11] dark:bg-snow-300/[0.04]";
+const LAYOUTS = [
+  { label: "By date", value: "date" },
+  { label: "Project", value: "project" },
+];
 
 export default function DocsExport() {
   const { top } = useSafeAreaInsets();
   const [format, setFormat] = useState(FORMATS[0]);
   const [pattern, setPattern] = useState("{date}-{title}");
+  const [layout, setLayout] = useState(LAYOUTS[0].value);
   const [location, setLocation] = useState<string>();
 
   return (
@@ -65,6 +68,23 @@ export default function DocsExport() {
             onChangeText={setPattern}
             autoCapitalize="none"
           />
+        </Collapsible>
+
+        <Collapsible
+          title="Export folder layout"
+          description="Organize exports by date or project for easy access"
+        >
+          <View className="gap-2">
+            {LAYOUTS.map(({ label, value }) => (
+              <Checkbox
+                key={value}
+                label={label}
+                checked={layout === value}
+                onChange={() => setLayout(value)}
+                shape="circle"
+              />
+            ))}
+          </View>
         </Collapsible>
 
         <Collapsible
