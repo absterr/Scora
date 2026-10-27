@@ -31,6 +31,7 @@ export default function Input({
   secureTextEntry,
   onFocus,
   onBlur,
+  multiline,
   className,
   ...props
 }: InputProps) {
@@ -60,6 +61,7 @@ export default function Input({
       <View
         className={cn(
           "h-11 w-full flex-row items-center gap-2 rounded-xl border bg-white/60 px-4 dark:bg-snow-300/[0.04]",
+          multiline && "h-[100px] items-start py-3",
           borderClass
         )}
         style={{ boxShadow: "0 1px 3px 1px rgba(0,0,0,0.08)" }}
@@ -76,7 +78,12 @@ export default function Input({
           }}
           // snow-800 (light), ink-400 (dark)
           placeholderTextColor={colorScheme === "dark" ? "#404040" : "#8A8A8A"}
-          className="flex-1 p-0 font-display-regular text-[14px] text-ink-500 dark:text-white"
+          multiline={multiline}
+          textAlignVertical={multiline ? "top" : undefined}
+          className={cn(
+            "flex-1 p-0 font-display-regular text-[14px] text-ink-500 dark:text-white",
+            multiline && "h-full"
+          )}
           {...props}
         />
 

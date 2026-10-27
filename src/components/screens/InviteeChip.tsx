@@ -8,12 +8,14 @@ import Avatar from "@/components/ui/Avatar";
 export default function InviteeChip({
   name,
   onRemove,
+  className,
 }: {
   name: string;
   onRemove: () => void;
+  className?: string;
 }) {
   return (
-    <View className="w-[89px] items-center gap-1">
+    <View className={`w-[89px] items-center gap-1 ${className}`}>
       <View>
         <Avatar
           name={name}
