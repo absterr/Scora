@@ -8,6 +8,7 @@ export { default as BrokenLink } from "@/assets/icons/line/broken-link.svg";
 
 export { default as Calendar } from "@/assets/icons/line/calendar.svg";
 export { default as CameraReverse } from "@/assets/icons/line/camera-reverse.svg";
+export { default as Check } from "@/assets/icons/line/check.svg";
 export { default as ChevronDown } from "@/assets/icons/line/chevron-down.svg";
 export { default as ChevronLeft } from "@/assets/icons/line/chevron-left.svg";
 export { default as ChevronRight } from "@/assets/icons/line/chevron-right.svg";
