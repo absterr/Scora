@@ -1,20 +1,24 @@
 import { useState } from "react";
-import { Pressable, ScrollView, Text, View } from "react-native";
+import { ScrollView, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import { ChevronRight } from "@/components/icons/line";
 import ScreenHeader from "@/components/screens/settings/ScreenHeader";
+import Checkbox from "@/components/ui/Checkbox";
 import Collapsible from "@/components/ui/Collapsible";
 import RadioButton from "@/components/ui/RadioButton";
 import Selectable from "@/components/ui/Selectable";
 import Slider from "@/components/ui/Slider";
+import ToggleSwitch from "@/components/ui/ToggleSwitch";
 
 const TIGHT = { letterSpacing: -0.084 };
 
-const ROWS = [
-  { label: "Video Quality", value: "HD" },
-  { label: "Microphone", value: "Built-in" },
-  { label: "Speaker", value: "Default" },
+const ROWS = [{ label: "Video Quality", value: "HD" }];
+
+const VIDEO_QUALITIES = [
+  { label: "Auto", value: "auto" },
+  { label: "nHD", value: "360p" },
+  { label: "HD", value: "720p" },
+  { label: "Full HD", value: "1080p" },
 ];
 
 const BACKGROUNDS = ["None", "Blur", "Office"];
@@ -30,6 +34,8 @@ export default function VideoAudio() {
   const [background, setBackground] = useState("None");
   const [microphone, setMicrophone] = useState("default");
   const [volume, setVolume] = useState(50);
+  const [defaultVideo, setDefaultVideo] = useState(false);
+  const [quality, setQuality] = useState("auto");
 
   return (
     <ScrollView
@@ -42,34 +48,55 @@ export default function VideoAudio() {
       />
 
       <View className="gap-2">
-        {ROWS.map(({ label, value }) => (
-          <Pressable
-            key={label}
-            accessibilityRole="button"
-            className={`h-11 px-3 flex-row items-center justify-between gap-2 rounded-xl
-              border border-brand-100 bg-[rgba(205,207,229,0.22)]  dark:border-grey-500 dark:bg-grey-800`}
-          >
-            <Text
-              className="font-display-medium text-sm leading-5 text-ink-500 dark:text-snow-600"
-              style={TIGHT}
-            >
-              {label}
-            </Text>
-            <View className="flex-row items-center gap-1">
-              <Text
-                className="font-display-regular text-sm leading-5 text-ink-400 dark:text-grey-100"
-                style={TIGHT}
-              >
-                {value}
-              </Text>
-              <ChevronRight
-                width={16}
-                height={16}
-                className="text-ink-400 dark:text-grey-100"
+        <Collapsible
+          title="Video"
+          description="Set default video behavior and resolution."
+        >
+          <View className="gap-4">
+            <View className="flex-row items-start justify-between gap-4">
+              <View className="flex-1 gap-0.5">
+                <Text
+                  className="font-display-medium text-sm leading-5 text-ink-500 dark:text-snow-600"
+                  style={TIGHT}
+                >
+                  Default Video
+                </Text>
+                <Text
+                  className="font-display-regular text-sm leading-5 text-ink-400 dark:text-grey-100"
+                  style={TIGHT}
+                >
+                  Set your video to turn on automatically or stay off by
+                  default.
+                </Text>
+              </View>
+              <ToggleSwitch
+                value={defaultVideo}
+                onValueChange={setDefaultVideo}
               />
             </View>
-          </Pressable>
-        ))}
+
+            <View className="gap-2">
+              <Text
+                className="font-display-medium text-sm leading-5 text-ink-400 dark:text-grey-100"
+                style={TIGHT}
+              >
+                Resolution
+              </Text>
+              <View className="flex-row justify-between py-1 gap-2">
+                {VIDEO_QUALITIES.map(({ label, value }) => (
+                  <Checkbox
+                    key={value}
+                    variant="outline"
+                    label={value !== "auto" ? `${label} (${value})` : label}
+                    checked={quality === value}
+                    onChange={() => setQuality(value)}
+                    className="pt-0"
+                  />
+                ))}
+              </View>
+            </View>
+          </View>
+        </Collapsible>
 
         <Collapsible
           title="Set Background"

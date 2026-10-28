@@ -1,5 +1,3 @@
-// Overlap at the call site with className="-ml-[9px]"
-
 import { Pressable, Text, View } from "react-native";
 import Svg, { Circle, Path } from "react-native-svg";
 

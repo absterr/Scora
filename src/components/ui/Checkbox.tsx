@@ -69,7 +69,7 @@ export default function Checkbox({
       </View>
       <Text
         className={cn(
-          "flex-1 font-display-regular text-sm leading-5",
+          "shrink font-display-regular text-sm leading-5",
           outline || circle
             ? "text-ink-400 dark:text-grey-100"
             : "text-snow-900"
